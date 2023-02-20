@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>ClinicalSkills.Persistence</RootNamespace>
+    <AssemblyName>ClinicalSkills.Persistence</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Auth.Data" />
+    <PackageReference Include="Jeebs.Cryptography" />
+    <PackageReference Include="Jeebs.Data" />
+    <PackageReference Include="Simple.Migrations" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistence.Types\Persistence.Types.csproj" />
+  </ItemGroup>
+</Project>
