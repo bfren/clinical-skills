@@ -8,8 +8,4 @@ namespace ClinicalSkills.Persistence.Types;
 /// </summary>
 public static class Constants
 {
-	/// <summary>
-	/// Database schema name
-	/// </summary>
-	public static string Schema { get; } = "skills";
 }

@@ -10,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// User Encryption table
 /// </summary>
-public sealed record class UserEncryptionTable() : Table(Constants.Schema, TableName)
+public sealed record class UserEncryptionTable() : Table(TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column

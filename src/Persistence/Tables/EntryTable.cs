@@ -10,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Entry table
 /// </summary>
-public sealed record class EntryTable() : Table(Constants.Schema, TableName)
+public sealed record class EntryTable() : Table(TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column

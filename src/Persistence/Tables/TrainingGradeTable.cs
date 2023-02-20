@@ -10,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Training Grade table
 /// </summary>
-public sealed record class TrainingGradeTable() : Table(Constants.Schema, TableName)
+public sealed record class TrainingGradeTable() : Table(TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column

@@ -10,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Theme table
 /// </summary>
-public sealed record class ThemeTable() : Table(Constants.Schema, TableName)
+public sealed record class ThemeTable() : Table(TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column
