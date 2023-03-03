@@ -1,0 +1,25 @@
+@model ClinicalSkills.WebApp.Pages.Components.Header.HeaderModel
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+}
+
+<header class="navbar navbar-dark sticky-top bg-dark p-1 shadow">
+
+	<div class="d-flex px-2 justify-content-between align-items-center w-100">
+
+		<button class="navbar-toggler d-md-none border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar" aria-controls="sidebar">
+			<i class="fa-solid fa-bars"></i>
+		</button>
+		<a asp-page="/Entries/Index" asp-page-handler="Home" class="navbar-brand fs-3 ms-auto me-auto ms-md-0" title="Clinical Skills">Clinical Skills</a>
+		<div>
+			<button class="navbar-toggler border-0" data-bs-toggle="collapse" href="#search" role="button" aria-expanded="false" aria-controls="search">
+				<i class="fa-solid fa-magnifying-glass"></i>
+			</button>
+		</div>
+	</div>
+
+	<div id="search" class="collapse w-100">
+		<input class="form-control form-control-dark rounded-0 border-0 w-100" type="text" placeholder="Search" aria-label="Search" />
+	</div>
+
+</header>
