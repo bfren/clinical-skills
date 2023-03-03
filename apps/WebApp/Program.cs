@@ -1,21 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
+// Clinical Skills Apps
+// Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-// Add services to the container.
-builder.Services.AddRazorPages();
+using ClinicalSkills.WebApp;
+using Jeebs.Cqrs;
 
-var app = builder.Build();
+// ==========================================
+//  CONFIGURE
+// ==========================================
 
-// Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
-{
-	app.UseExceptionHandler("/Error");
-}
-app.UseStaticFiles();
+var (app, log) = Jeebs.Apps.Web.MvcApp.Create<App>(args);
+var dispatcher = app.Services.GetRequiredService<IDispatcher>();
 
-app.UseRouting();
-
-app.UseAuthorization();
-
-app.MapRazorPages();
+// ==========================================
+//  RUN APP
+// ==========================================
 
 app.Run();

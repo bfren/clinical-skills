@@ -1,0 +1,37 @@
+{
+  "jeebs": {
+    "app": {
+      "name": "Web App",
+      "suite": "Clinical Skills"
+    },
+    "db": {
+      "default": "temp",
+      "connections": {
+        "temp": {
+          "connectionString": ""
+        }
+      }
+    },
+    "logging": {
+      "minimum": "Verbose",
+      "providers": {
+        "console.serilog": {
+          "enabled": true
+        }
+      }
+    },
+    "services": {
+      "console": {
+        "serilog": {
+          "addPrefix": false
+        }
+      }
+    },
+    "web": {
+      "auth": {
+        "enabled": true,
+        "scheme": "jwt"
+      }
+    }
+  }
+}

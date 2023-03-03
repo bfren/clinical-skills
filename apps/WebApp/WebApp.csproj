@@ -6,4 +6,14 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Mvc.Razor" />
+    <PackageReference Include="MaybeF.Caching" />
+    <PackageReference Include="StrongId" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Persistence.Clients.Sqlite\Persistence.Clients.Sqlite.csproj" />
+  </ItemGroup>
+
 </Project>
