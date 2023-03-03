@@ -1,5 +1,10 @@
 @model ClinicalSkills.WebApp.Pages.Components.Sidebar.SidebarModel
 
+@if (Model.Menus is null)
+{
+	return;
+}
+
 <div class="offcanvas-md offcanvas-start col-md-3 col-xl-2" tabindex="-1" id="sidebar" aria-labelledby="sidebarLabel">
 	<div class="offcanvas-header">
 		<h5 class="offcanvas-title" id="sidebarLabel">Navigation</h5>
