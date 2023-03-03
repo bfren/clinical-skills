@@ -37,12 +37,12 @@ public sealed record class EntryEntity : IWithVersion<EntryId>
 	/// <summary>
 	/// Clinical Setting ID
 	/// </summary>
-	public ClinicalSettingId? ClinicalSettingId { get; init; }
+	public ClinicalSettingId ClinicalSettingId { get; init; } = new();
 
 	/// <summary>
 	/// Training Grade ID
 	/// </summary>
-	public TrainingGradeId? TrainingGradeId { get; init; }
+	public TrainingGradeId TrainingGradeId { get; init; } = new();
 
 	/// <summary>
 	/// The patient's age
