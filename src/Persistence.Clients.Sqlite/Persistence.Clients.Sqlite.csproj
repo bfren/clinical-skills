@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>ClinicalSkills.Persistence.Clients.Sqlite</RootNamespace>
+    <AssemblyName>ClinicalSkills.Persistence.Clients.Sqlite</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Auth.Data.Clients.Sqlite" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+  </ItemGroup>
+</Project>

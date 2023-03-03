@@ -10,12 +10,12 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Theme table
 /// </summary>
-public sealed record class ThemeTable() : Table(TableName)
+public sealed record class ThemeTable() : Table(Constants.Schema, TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column
 	/// </summary>
-	public static readonly string TableName = "_theme";
+	public static readonly string TableName = "theme";
 
 	/// <inheritdoc cref="Entities.ThemeEntity.Id"/>
 	[Id]

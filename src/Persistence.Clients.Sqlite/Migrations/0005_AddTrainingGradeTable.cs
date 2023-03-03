@@ -3,6 +3,7 @@
 
 using System;
 using ClinicalSkills.Persistence.Tables;
+using ClinicalSkills.Persistence.Types;
 using SimpleMigrations;
 
 namespace ClinicalSkills.Persistence.Clients.Sqlite.Migrations;
@@ -17,14 +18,14 @@ public sealed class AddTrainingGradeTable : Migration
 	/// 1: Up
 	/// </summary>
 	protected override void Up() => Execute($"""
-		CREATE TABLE "{TrainingGradeTable.TableName}" (
+		CREATE TABLE "{Constants.Schema}.{TrainingGradeTable.TableName}" (
 			"{Col(e => e.Id)}" INTEGER NOT NULL UNIQUE,
 			"{Col(e => e.Version)}" INTEGER NOT NULL,
 			"{Col(e => e.UserId)}" INTEGER NOT NULL,
 			"{Col(e => e.Description)}" TEXT NOT NULL,
 			PRIMARY KEY("{Col(e => e.Id)}" AUTOINCREMENT)
 		);
-		CREATE INDEX "training_grades_by_user_id" ON "{TrainingGradeTable.TableName}" (
+		CREATE INDEX "training_grades_by_user_id" ON "{Constants.Schema}.{TrainingGradeTable.TableName}" (
 			"{Col(e => e.UserId)}" ASC
 		);
 		""");
@@ -33,7 +34,7 @@ public sealed class AddTrainingGradeTable : Migration
 	/// 1: Down
 	/// </summary>
 	protected override void Down() => Execute($"""
-		DROP TABLE IF EXISTS "{TrainingGradeTable.TableName}";
+		DROP TABLE IF EXISTS "{Constants.Schema}.{TrainingGradeTable.TableName}";
 		DROP INDEX IF EXISTS "training_grades_by_user_id";
 		""");
 }

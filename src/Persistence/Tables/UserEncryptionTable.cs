@@ -10,12 +10,12 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// User Encryption table
 /// </summary>
-public sealed record class UserEncryptionTable() : Table(TableName)
+public sealed record class UserEncryptionTable() : Table(Constants.Schema, TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column
 	/// </summary>
-	public static readonly string TableName = "training_grade";
+	public static readonly string TableName = "user_encryption";
 
 	/// <inheritdoc cref="Entities.UserEncryptionEntity.Id"/>
 	[Id]

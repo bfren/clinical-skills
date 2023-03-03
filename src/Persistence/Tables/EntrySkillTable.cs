@@ -10,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Entry Skill table
 /// </summary>
-public sealed record class EntrySkillTable() : Table(TableName)
+public sealed record class EntrySkillTable() : Table(Constants.Schema, TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column
@@ -28,5 +28,5 @@ public sealed record class EntrySkillTable() : Table(TableName)
 
 	/// <inheritdoc cref="Entities.EntrySkillEntity.SkillId"/>
 	public string SkillId =>
-		$"{TableName}_entry_id";
+		$"{TableName}_skill_id";
 }

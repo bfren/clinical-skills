@@ -1,6 +1,7 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
+using ClinicalSkills.Persistence.Types;
 using Jeebs.Data.Attributes;
 using Jeebs.Data.Map;
 
@@ -9,7 +10,7 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Clinical Setting table
 /// </summary>
-public sealed record class ClinicalSettingTable() : Table(TableName)
+public sealed record class ClinicalSettingTable() : Table(Constants.Schema, TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column

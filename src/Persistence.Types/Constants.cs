@@ -8,4 +8,8 @@ namespace ClinicalSkills.Persistence.Types;
 /// </summary>
 public static class Constants
 {
+	/// <summary>
+	/// Schema name
+	/// </summary>
+	public const string Schema = "main";
 }

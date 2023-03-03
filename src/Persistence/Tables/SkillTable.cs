@@ -10,12 +10,12 @@ namespace ClinicalSkills.Persistence.Tables;
 /// <summary>
 /// Skill table
 /// </summary>
-public sealed record class SkillTable() : Table(TableName)
+public sealed record class SkillTable() : Table(Constants.Schema, TableName)
 {
 	/// <summary>
 	/// Table name - used as a prefix for each column
 	/// </summary>
-	public static readonly string TableName = "_skill";
+	public static readonly string TableName = "skill";
 
 	/// <inheritdoc cref="Entities.SkillEntity.Id"/>
 	[Id]

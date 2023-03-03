@@ -3,6 +3,7 @@
 
 using System;
 using ClinicalSkills.Persistence.Tables;
+using ClinicalSkills.Persistence.Types;
 using SimpleMigrations;
 
 namespace ClinicalSkills.Persistence.Clients.Sqlite.Migrations;
@@ -17,13 +18,13 @@ public sealed class AddEntryThemeTable : Migration
 	/// 1: Up
 	/// </summary>
 	protected override void Up() => Execute($"""
-		CREATE TABLE "{EntryThemeTable.TableName}" (
+		CREATE TABLE "{Constants.Schema}.{EntryThemeTable.TableName}" (
 			"{Col(e => e.Id)}" INTEGER NOT NULL UNIQUE,
 			"{Col(e => e.EntryId)}" INTEGER NOT NULL,
 			"{Col(e => e.ThemeId)}" INTEGER NOT NULL,
 			PRIMARY KEY("{Col(e => e.Id)}" AUTOINCREMENT)
 		);
-		CREATE UNIQUE INDEX "entry_themes" ON "{EntryThemeTable.TableName}" (
+		CREATE UNIQUE INDEX "entry_themes" ON "{Constants.Schema}.{EntryThemeTable.TableName}" (
 			"{Col(e => e.EntryId)}" ASC,
 			"{Col(e => e.ThemeId)}" ASC
 		);
@@ -33,7 +34,7 @@ public sealed class AddEntryThemeTable : Migration
 	/// 1: Down
 	/// </summary>
 	protected override void Down() => Execute($"""
-		DROP TABLE IF EXISTS "{EntryThemeTable.TableName}";
+		DROP TABLE IF EXISTS "{Constants.Schema}.{EntryThemeTable.TableName}";
 		DROP INDEX IF EXISTS "entry_themes";
 		""");
 }
