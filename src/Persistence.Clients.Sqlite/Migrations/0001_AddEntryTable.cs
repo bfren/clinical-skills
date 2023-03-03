@@ -20,7 +20,7 @@ public sealed class AddEntryTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE "{Constants.Schema}.{EntryTable.TableName}" (
 			"{Col(e => e.Id)}" INTEGER NOT NULL UNIQUE,
-			"{Col(e => e.Version)}" INTEGER NOT NULL,
+			"{Col(e => e.Version)}" INTEGER NOT NULL DEFAULT 0,
 			"{Col(e => e.UserId)}" INTEGER NOT NULL,
 			"{Col(e => e.DateOccurred)}" TEXT NOT NULL,
 			"{Col(e => e.ClinicalSettingId)}" INTEGER NOT NULL,

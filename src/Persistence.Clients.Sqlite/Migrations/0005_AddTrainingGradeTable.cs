@@ -20,7 +20,7 @@ public sealed class AddTrainingGradeTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE "{Constants.Schema}.{TrainingGradeTable.TableName}" (
 			"{Col(e => e.Id)}" INTEGER NOT NULL UNIQUE,
-			"{Col(e => e.Version)}" INTEGER NOT NULL,
+			"{Col(e => e.Version)}" INTEGER NOT NULL DEFAULT 0,
 			"{Col(e => e.UserId)}" INTEGER NOT NULL,
 			"{Col(e => e.Description)}" TEXT NOT NULL,
 			PRIMARY KEY("{Col(e => e.Id)}" AUTOINCREMENT)
