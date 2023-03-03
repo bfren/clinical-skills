@@ -1,7 +1,9 @@
-﻿// Clinical Skills Apps
+// Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using ClinicalSkills.Persistence.Clients.Sqlite;
+using Jeebs.Auth.Data;
+using Jeebs.Auth.Data.Clients.Sqlite;
 using Jeebs.Cqrs;
 using Microsoft.Extensions.DependencyInjection;
 using D = ClinicalSkills.Domain;
@@ -10,7 +12,12 @@ using D = ClinicalSkills.Domain;
 //  CONFIGURE
 // ==========================================
 
-var (app, log) = Jeebs.Apps.Host.Create(args, (_, svc) => svc.AddData().AddCqrs());
+var (app, log) = Jeebs.Apps.Host.Create(args, (ctx, svc) =>
+{
+	_ = svc.AddData();
+	_ = svc.AddAuthData<SqliteDbClient>(true);
+	_ = svc.AddCqrs();
+});
 
 // ==========================================
 //  BEGIN
@@ -33,9 +40,9 @@ static void Write(string text)
 	Console.WriteLine(pad);
 }
 
-static void Pause()
+static void Pause(string text = "PAUSE")
 {
-	Write("PAUSE");
+	Write(text);
 	Console.WriteLine("Press any key when ready.");
 	_ = Console.ReadLine();
 }
@@ -54,4 +61,4 @@ await dispatcher.DispatchAsync(
 //  DONE
 // ==========================================
 
-Write("Done");
+Pause("Done");

@@ -1,8 +1,6 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using Jeebs.Auth.Data;
-using Jeebs.Auth.Data.Clients.Sqlite;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ClinicalSkills.Persistence.Clients.Sqlite;
@@ -19,6 +17,5 @@ public static class ServiceCollectionExtensions
 	public static IServiceCollection AddData(this IServiceCollection services) =>
 		ClinicalSkillsDb
 			.AddServices(services)
-			.AddAuthData<SqliteDbClient>(true)
 			.AddTransient<Migrator, SqliteMigrator>();
 }
