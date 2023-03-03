@@ -1,0 +1,11 @@
+/// <reference path="clinical-skills" />
+
+footer {
+  background-color: $gray-100;
+  min-height: 70px;
+
+  div {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+}
