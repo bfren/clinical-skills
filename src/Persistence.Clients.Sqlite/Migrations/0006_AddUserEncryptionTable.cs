@@ -21,12 +21,12 @@ public sealed class AddUserEncryptionTable : Migration
 		CREATE TABLE "{Constants.Schema}.{UserEncryptionTable.TableName}" (
 			"{Col(e => e.Id)}" INTEGER NOT NULL UNIQUE,
 			"{Col(e => e.Version)}" INTEGER NOT NULL DEFAULT 0,
-			"{Col(e => e.Email)}" TEXT NOT NULL,
+			"{Col(e => e.UserId)}" INTEGER NOT NULL,
 			"{Col(e => e.Key)}" TEXT NOT NULL,
 			PRIMARY KEY("{Col(e => e.Id)}" AUTOINCREMENT)
 		);
-		CREATE UNIQUE INDEX "user_encryption_by_email" ON "{Constants.Schema}.{UserEncryptionTable.TableName}" (
-			"{Col(e => e.Email)}" ASC
+		CREATE UNIQUE INDEX "user_encryption_by_user_id" ON "{Constants.Schema}.{UserEncryptionTable.TableName}" (
+			"{Col(e => e.UserId)}" ASC
 		);
 		""");
 
