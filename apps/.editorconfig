@@ -1,0 +1,14 @@
+[*.{cs,csx,cake,vb,vbx}]
+
+file_header_template = Clinical Skills Apps\nCopyright (c) bfren - licensed under https://mit.bfren.dev/2023
+
+insert_final_newline = true
+
+[*.cshtml]
+
+insert_final_newline = true
+
+[*.js]
+
+indent_style = tab
+indent_size = 4
