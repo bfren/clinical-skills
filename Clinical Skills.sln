@@ -6,6 +6,10 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "apps\WebApp\WebApp.csproj", "{D2AA80B5-1F69-4BF5-AB69-4C62BE9DBC27}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "apps", "apps", "{43EE59D6-237A-408F-A46F-017664A128B1}"
+	ProjectSection(SolutionItems) = preProject
+		apps\.editorconfig = apps\.editorconfig
+		apps\Directory.Build.props = apps\Directory.Build.props
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{796A9C85-6873-4352-A79D-A6427753149A}"
 	ProjectSection(SolutionItems) = preProject
@@ -34,11 +38,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Domain", "tests\Tests.Domain\Tests.Domain.csproj", "{A49FB694-8EC2-4622-AA51-23DBD2E354F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Clients.Sqlite", "src\Persistence.Clients.Sqlite\Persistence.Clients.Sqlite.csproj", "{0E40C2F7-ECCD-4D24-930F-5A2785C24246}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Clients.Sqlite", "src\Persistence.Clients.Sqlite\Persistence.Clients.Sqlite.csproj", "{0E40C2F7-ECCD-4D24-930F-5A2785C24246}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "src\Persistence\Persistence.csproj", "{BF7B8B6A-8F76-4845-B993-ADDB92FE658D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "src\Persistence\Persistence.csproj", "{BF7B8B6A-8F76-4845-B993-ADDB92FE658D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence.Types", "src\Persistence.Types\Persistence.Types.csproj", "{21BC027D-348A-4453-8D1C-DA24002693DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence.Types", "src\Persistence.Types\Persistence.Types.csproj", "{21BC027D-348A-4453-8D1C-DA24002693DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "apps\ConsoleApp\ConsoleApp.csproj", "{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +76,10 @@ Global
 		{21BC027D-348A-4453-8D1C-DA24002693DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21BC027D-348A-4453-8D1C-DA24002693DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21BC027D-348A-4453-8D1C-DA24002693DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +91,7 @@ Global
 		{0E40C2F7-ECCD-4D24-930F-5A2785C24246} = {796A9C85-6873-4352-A79D-A6427753149A}
 		{BF7B8B6A-8F76-4845-B993-ADDB92FE658D} = {796A9C85-6873-4352-A79D-A6427753149A}
 		{21BC027D-348A-4453-8D1C-DA24002693DA} = {796A9C85-6873-4352-A79D-A6427753149A}
+		{9E70353B-DCEB-47DC-9D3C-18F19B3BAE57} = {43EE59D6-237A-408F-A46F-017664A128B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8A49A013-BCB8-4543-8EBD-C45F0A12CE59}

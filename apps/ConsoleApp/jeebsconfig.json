@@ -1,0 +1,31 @@
+{
+  "jeebs": {
+    "app": {
+      "name": "Console App",
+      "suite": "Clinical Skills"
+    },
+    "db": {
+      "default": "desktop",
+      "connections": {
+        "desktop": {
+          "connectionString": ""
+        }
+      }
+    },
+    "logging": {
+      "minimum": "Debug",
+      "providers": {
+        "console.serilog": {
+          "enabled": true
+        }
+      }
+    },
+    "services": {
+      "console": {
+        "serilog": {
+          "addPrefix": false
+        }
+      }
+    }
+  }
+}
