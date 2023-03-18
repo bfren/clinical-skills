@@ -5,9 +5,9 @@
       "suite": "Clinical Skills"
     },
     "db": {
-      "default": "desktop",
+      "default": "rpi",
       "connections": {
-        "desktop": {
+        "rpi": {
           "connectionString": ""
         }
       }

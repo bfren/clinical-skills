@@ -1,8 +1,7 @@
 {
   "jeebs": {
     "db": {
-      "default": "elrond-docker",
-      "authentication": "elrond-docker"
+      "default": "docker-elrond"
     },
     "logging": {
       "minimum": "Warning"

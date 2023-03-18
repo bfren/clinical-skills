@@ -5,9 +5,9 @@
       "suite": "Clinical Skills"
     },
     "db": {
-      "default": "temp",
+      "default": "rpi-docker",
       "connections": {
-        "temp": {
+        "rpi-docker": {
           "connectionString": ""
         }
       }
