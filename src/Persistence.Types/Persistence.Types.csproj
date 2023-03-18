@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <RootNamespace>ClinicalSkills.Persistence.Types</RootNamespace>
-    <AssemblyName>ClinicalSkills.Persistence.Types</AssemblyName>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="StrongId" />
-  </ItemGroup>
-</Project>

@@ -2,7 +2,7 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System;
-using ClinicalSkills.Persistence.Types.StrongIds;
+using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Cryptography;
 using Jeebs.Data;
@@ -32,7 +32,7 @@ public sealed record class EntryEntity : IWithVersion<EntryId>
 	/// <summary>
 	/// The date this entry occurred
 	/// </summary>
-	public DateOnly DateOccurred { get; init; }
+	public DateTime DateOccurred { get; init; }
 
 	/// <summary>
 	/// Clinical Setting ID

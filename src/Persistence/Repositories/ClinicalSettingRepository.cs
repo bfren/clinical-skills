@@ -2,7 +2,7 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Types.StrongIds;
+using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Data;
 using Jeebs.Logging;
 
