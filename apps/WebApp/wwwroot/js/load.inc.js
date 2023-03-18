@@ -30,8 +30,10 @@ function loadHash() {
 		url = home;
 	}
 
-	// get URL contents
+	// setup authentication
 	setupAjaxAuth();
+
+	// get page content
 	$.ajax(
 		{
 			url: url,
@@ -75,6 +77,25 @@ function loadHash() {
 			// something else has gone wrong
 			showAlert(alertTypes.error, "Something went wrong, please try again.");
 		});;
+
+	// get sidebar content
+	$.ajax(
+		{
+			url: sidebar,
+			method: "GET"
+		})
+
+		.done(function (data, status, xhr) {
+			// replace HTML
+			$("#content").removeClass("w-100");
+			$("#sidebar-content").html(data);
+		})
+
+		.fail(function (xhr) {
+			// clear HTML
+			$("#content").addClass("w-100");
+			$("#sidebar-content").html("");
+		});
 }
 ready(loadHash);
 window.onhashchange = loadHash;

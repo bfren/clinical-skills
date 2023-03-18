@@ -10879,44 +10879,6 @@ footer div {
   text-align: center;
 }
 
-.statusbar {
-  background-color: #f8f9fa;
-  min-height: 49px;
-}
-.statusbar .message-wrapper {
-  padding-top: 5px;
-}
-.statusbar .message {
-  background-color: #ffffcc;
-  border: 1px solid #e6e6b8;
-  max-height: 150px;
-  padding: 5px 8px;
-  width: calc(100% - 5rem);
-}
-.statusbar .message .fa-check {
-  color: forestgreen;
-}
-.statusbar .message .fa-triangle-exclamation {
-  color: darkorange;
-}
-.statusbar .message .fa-ban {
-  color: red;
-}
-.statusbar .message .close:hover {
-  cursor: pointer;
-}
-.statusbar .message .manual {
-  color: red;
-}
-.statusbar .btn-create {
-  color: #fff;
-  cursor: pointer;
-  font-size: 4.5rem;
-  line-height: 1rem;
-  margin-top: -1rem;
-  text-shadow: 0 0 3px #fff;
-}
-.statusbar .btn-create .fa-circle-plus path {
-  stroke: #f8f9fa;
-  stroke-width: 20px;
+.sign-in-form form > div:nth-child(3) {
+  display: none;
 }

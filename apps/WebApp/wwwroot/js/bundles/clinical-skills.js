@@ -1,3 +1,31 @@
+const auth = "jwt";
+
+/**
+ * Set authorization token using local storage for persistence.
+ *
+ * @param {any} token Token value.
+ */
+function setAuth(token) {
+	if (token) {
+		localStorage.setItem(auth, "Bearer " + token);
+		setupAjaxAuth();
+	} else {
+		localStorage.clear();
+	}
+}
+
+/**
+ * Add authorization header to the next AJAX request.
+ *
+ */
+function setupAjaxAuth() {
+	$.ajaxSetup({
+		beforeSend: (xhr) => {
+			xhr.setRequestHeader("Authorization", localStorage.getItem(auth))
+		}
+	});
+}
+
 const alertIcons = {
 	close: $("<i/>").addClass("fa-solid fa-xmark"),
 	info: $("<i/>").addClass("fa-solid fa-circle-info"),
@@ -132,8 +160,10 @@ function loadHash() {
 		url = home;
 	}
 
-	// get URL contents
+	// setup authentication
 	setupAjaxAuth();
+
+	// get page content
 	$.ajax(
 		{
 			url: url,
@@ -177,6 +207,25 @@ function loadHash() {
 			// something else has gone wrong
 			showAlert(alertTypes.error, "Something went wrong, please try again.");
 		});;
+
+	// get sidebar content
+	$.ajax(
+		{
+			url: sidebar,
+			method: "GET"
+		})
+
+		.done(function (data, status, xhr) {
+			// replace HTML
+			$("#content").removeClass("w-100");
+			$("#sidebar-content").html(data);
+		})
+
+		.fail(function (xhr) {
+			// clear HTML
+			$("#content").addClass("w-100");
+			$("#sidebar-content").html("");
+		});
 }
 ready(loadHash);
 window.onhashchange = loadHash;
@@ -216,6 +265,8 @@ function setupLinks() {
 	})
 }
 ready(setupLinks);
+
+var modal;
 
 /**
  * Handle a JSON Result object.

@@ -1,0 +1,7 @@
+/// <reference path="clinical-skills" />
+
+.sign-in-form {
+  form > div:nth-child(3) {
+    display: none;
+  }
+}
