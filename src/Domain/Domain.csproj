@@ -1,14 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Description>Clinical Skills: Domain commands and queries.</Description>
+  </PropertyGroup>
+  <PropertyGroup>
     <RootNamespace>ClinicalSkills.Domain</RootNamespace>
     <AssemblyName>ClinicalSkills.Domain</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Jeebs.Auth.Data.Clients.PostgreSql" />
     <PackageReference Include="Jeebs.Cqrs" />
+    <PackageReference Include="MaybeF.Caching" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Persistence.Types\Persistence.Types.csproj" />
-    <ProjectReference Include="..\Persistence\Persistence.csproj" />
+    <ProjectReference Include="..\Persistence\Persistence.csproj" PrivateAssets="All" />
   </ItemGroup>
 </Project>

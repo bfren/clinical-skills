@@ -1,2 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>ClinicalSkills.Domain</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Data.Testing" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Domain\Domain.csproj" />
+    <ProjectReference Include="..\..\src\Persistence\Persistence.csproj" />
+  </ItemGroup>
 </Project>

@@ -1,5 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <Description>Clinical Skills: Persistence library.</Description>
+  </PropertyGroup>
+  <PropertyGroup>
     <RootNamespace>ClinicalSkills.Persistence</RootNamespace>
     <AssemblyName>ClinicalSkills.Persistence</AssemblyName>
   </PropertyGroup>
@@ -8,8 +11,5 @@
     <PackageReference Include="Jeebs.Cryptography" />
     <PackageReference Include="Jeebs.Data" />
     <PackageReference Include="Simple.Migrations" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Persistence.Types\Persistence.Types.csproj" />
   </ItemGroup>
 </Project>

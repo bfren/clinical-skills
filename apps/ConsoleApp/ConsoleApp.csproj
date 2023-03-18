@@ -1,32 +1,28 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<OutputType>Exe</OutputType>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-	</PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
 
-	<ItemGroup>
-	  <None Remove="jeebsconfig-secrets.json" />
-	  <None Remove="jeebsconfig.json" />
-	</ItemGroup>
+  <ItemGroup>
+    <None Remove="jeebsconfig-secrets.json" />
+    <None Remove="jeebsconfig.json" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Content Include="jeebsconfig-secrets.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	  <Content Include="jeebsconfig.json">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-	  </Content>
-	</ItemGroup>
+  <ItemGroup>
+    <Content Include="jeebsconfig-secrets.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="jeebsconfig.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Jeebs.Apps" />
-		<PackageReference Include="Jeebs.Auth.Data" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\..\src\Persistence.Clients.Sqlite\Persistence.Clients.Sqlite.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Apps" />
+    <PackageReference Include="Jeebs.Auth.Data" />
+  </ItemGroup>
 
 </Project>
