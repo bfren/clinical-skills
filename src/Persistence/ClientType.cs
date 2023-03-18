@@ -9,7 +9,7 @@ namespace ClinicalSkills.Persistence;
 public enum ClientType
 {
 	/// <summary>
-	/// Sqlite
+	/// PostgreSql
 	/// </summary>
-	Sqlite = 0
+	PostgreSql = 0
 }

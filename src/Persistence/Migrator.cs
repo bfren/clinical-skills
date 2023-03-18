@@ -38,10 +38,10 @@ public abstract class Migrator
 	protected static bool MigrateTo(ClientType dbType, DbConnection dbConnection, Assembly migrationsAssembly, long? version)
 	{
 		// Get the correct provider
-		var provider = dbType switch
+		IDatabaseProvider<DbConnection> provider = dbType switch
 		{
-			ClientType.Sqlite =>
-				new SqliteDatabaseProvider(dbConnection) { TableName = "version_info" },
+			ClientType.PostgreSql =>
+				new PostgresqlDatabaseProvider(dbConnection) { SchemaName = Constants.Schema, TableName = "version_info" },
 
 			_ =>
 				throw new ArgumentOutOfRangeException(nameof(dbType), dbType, "Unknown database client type.")
