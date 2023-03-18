@@ -3,8 +3,8 @@
 
 using System.Data;
 using System.Threading.Tasks;
+using ClinicalSkills.Persistence;
 using ClinicalSkills.Persistence.Tables;
-using ClinicalSkills.Persistence.Types;
 using Jeebs.Cqrs;
 using Jeebs.Data;
 using Jeebs.Logging;
