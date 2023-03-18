@@ -2,12 +2,10 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
 using ClinicalSkills.Persistence.Tables;
 using Jeebs.Config.Db;
 using Jeebs.Data;
 using Jeebs.Logging;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 namespace ClinicalSkills.Persistence;
@@ -80,23 +78,4 @@ public sealed class ClinicalSkillsDb : Db
 		client.Types.AddLockedTypeHandlers();
 		client.Types.AddStrongIdTypeHandlers();
 	}
-
-	/// <summary>
-	/// Add required services
-	/// </summary>
-	/// <param name="services"></param>
-	public static IServiceCollection AddServices(IServiceCollection services) =>
-		services
-			// Add database
-			.AddSingleton<IDb, ClinicalSkillsDb>()
-			// Add repositories
-			.AddTransient<IClinicalSettingRepository, ClinicalSettingRepository>()
-			.AddTransient<IEntryRepository, EntryRepository>()
-			.AddTransient<IEntrySkillRepository, EntrySkillRepository>()
-			.AddTransient<IEntryThemeRepository, EntryThemeRepository>()
-			.AddTransient<ISkillRepository, SkillRepository>()
-			.AddTransient<IThemeRepository, ThemeRepository>()
-			.AddTransient<ITrainingGradeRepository, TrainingGradeRepository>()
-			.AddTransient<IUserEncryptionRepository, UserEncryptionRepository>()
-		;
 }
