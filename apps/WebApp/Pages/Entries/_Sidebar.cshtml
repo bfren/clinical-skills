@@ -1,0 +1,31 @@
+@model ClinicalSkills.WebApp.Pages.Entries.SidebarModel
+
+@if (User.Identity?.IsAuthenticated == true)
+{
+	<!-- Write Entry button -->
+	<div>
+		<button class="btn btn-outline-primary">
+			<i class="fa-solid fa-plus"></i> Write Entry
+		</button>
+	</div>
+
+	<!-- Menus -->
+	@foreach (var menu in Model.Menus)
+	{
+		<h5 class="fw-light mt-4 pt-1 border-top border-1 border-light">@menu.Title</h5>
+		<ul class="nav flex-column">
+			@foreach (var item in menu.Items)
+			{
+				var href = Url.Page(item.Page);
+				var current = Path == href;
+
+				var css = "nav-link" + (current ? " active" : "");
+				var aria = current ? " aria-current=\"page\"" : "";
+
+				<li class="nav-item">
+					<a class="@css" href="@href" @aria>@item.Text</a>
+				</li>
+			}
+		</ul>
+	}
+}

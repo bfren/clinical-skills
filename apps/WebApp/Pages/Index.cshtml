@@ -28,6 +28,7 @@
 		var readyF = [];
 		var ready = (f) => readyF.push(f);
 		var home = "@Url.Page("/Entries/Index", "Home")";
+		var sidebar = "@Url.Page("/Entries/Index", "Sidebar")";
 		var signIn = "@Url.Page("/Auth/SignIn")";
 	</script>
 
@@ -45,7 +46,7 @@
 			<vc:sidebar />
 
 			<!-- Main Content -->
-			<main role="main" class="col-12 col-md-9 col-xl-10 pt-2 px-md-4"></main>
+			<main role="main" id="content" class="col-12 col-md-9 col-xl-10 pt-2 px-md-4 flex-grow-1 w-100"></main>
 
 		</div>
 
@@ -56,17 +57,17 @@
 
 	<!-- Script -->
 	<environment names="Development">
-		<script defer src="~/lib/font-awesome/js/all.js" data-auto-add-css="false"></script>
-		<script defer src="~/js/bundles/clinical-skills-lib.js"></script>
-		<script defer src="~/js/bundles/clinical-skills.js"></script>
+		<script src="~/lib/font-awesome/js/all.js" data-auto-add-css="false"></script>
+		<script src="~/js/bundles/clinical-skills-lib.js"></script>
+		<script src="~/js/bundles/clinical-skills.js"></script>
 	</environment>
 	<environment names="Staging,Production">
-		<script defer src="~/lib/font-awesome/js/all.min.js" data-auto-add-css="false" asp-append-version="true" csp-add-nonce="true"></script>
-		<script defer src="~/js/bundles/clinical-skills-lib.min.js" asp-append-version="true" csp-add-nonce="true"></script>
-		<script defer src="~/js/bundles/clinical-skills.min.js" asp-append-version="true" csp-add-nonce="true"></script>
+		<script src="~/lib/font-awesome/js/all.min.js" data-auto-add-css="false" asp-append-version="true" csp-add-nonce="true"></script>
+		<script src="~/js/bundles/clinical-skills-lib.min.js" asp-append-version="true" csp-add-nonce="true"></script>
+		<script src="~/js/bundles/clinical-skills.min.js" asp-append-version="true" csp-add-nonce="true"></script>
 	</environment>
-	<script defer type="text/javascript" csp-add-nonce="true">
-		readyF.forEach((f, _) => f());
+	<script type="text/javascript" csp-add-nonce="true">
+		readyF.forEach((f) => f());
 	</script>
 
 	<div id="create" class="fixed-bottom"></div>
