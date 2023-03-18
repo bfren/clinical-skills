@@ -1,9 +1,10 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Clients.Sqlite;
+using ClinicalSkills.Persistence;
+using ClinicalSkills.Persistence.Clients.PostgreSql;
 using Jeebs.Auth.Data;
-using Jeebs.Auth.Data.Clients.Sqlite;
+using Jeebs.Auth.Data.Clients.PostgreSql;
 using Jeebs.Cqrs;
 using Microsoft.Extensions.DependencyInjection;
 using D = ClinicalSkills.Domain;
@@ -14,8 +15,9 @@ using D = ClinicalSkills.Domain;
 
 var (app, log) = Jeebs.Apps.Host.Create(args, (ctx, svc) =>
 {
-	_ = svc.AddData();
-	_ = svc.AddAuthData<SqliteDbClient>(true);
+	_ = svc.AddClinicalSkillsData();
+	_ = svc.AddClinicalSkillsMigrator();
+	_ = svc.AddAuthData<PostgreSqlDbClient>(true);
 	_ = svc.AddCqrs();
 });
 

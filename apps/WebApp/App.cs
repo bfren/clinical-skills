@@ -1,10 +1,11 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Clients.Sqlite;
-using ClinicalSkills.Persistence.Types.StrongIds;
+using ClinicalSkills.Persistence;
+using ClinicalSkills.Persistence.Clients.PostgreSql;
+using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Apps.Web;
-using Jeebs.Auth.Data.Clients.Sqlite;
+using Jeebs.Auth.Data.Clients.PostgreSql;
 using Jeebs.Cqrs;
 using Jeebs.Mvc.Auth;
 using MaybeF.Caching;
@@ -20,17 +21,18 @@ public sealed class App : RazorApp
 	{
 		base.ConfigureServices(ctx, services);
 
-		_ = services.AddData();
+		_ = services.AddClinicalSkillsData();
+		_ = services.AddClinicalSkillsMigrator();
 
 		_ = services.AddAuthentication(ctx.Configuration)
-			.WithData<SqliteDbClient>(true);
+			.WithData<PostgreSqlDbClient>(true);
+
+		_ = services
+			.AddCqrs();
 
 		_ = services
 			.AddMemoryCache()
 			.AddMaybeCache<EntryId>();
-
-		_ = services
-			.AddCqrs();
 	}
 
 	protected override void ConfigureResponseCompression(WebApplication app)
