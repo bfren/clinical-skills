@@ -8,21 +8,25 @@ using Jeebs.Auth.Data.Entities;
 
 namespace ClinicalSkills.Domain.CreateUser.CreateUserHandler_Tests;
 
-public sealed class HandleAsync_Tests : Abstracts.TestHandler
+public sealed class HandleAsync_Tests
 {
-	private sealed class Setup : Setup<IAuthUserRepository, AuthUserEntity, AuthUserId, CreateUserHandler, Setup.CreateUserVars>
+	internal sealed class TestHandler : Abstracts.TestHandlerBase<IAuthUserRepository, AuthUserEntity, AuthUserId, CreateUserHandler>
 	{
-		internal override CreateUserHandler GetHandler(CreateUserVars v) =>
-			new(v.Repo, v.UserEncryption, v.Log);
-
-		internal sealed record class CreateUserVars : Vars<IAuthUserRepository, AuthUserEntity, AuthUserId, CreateUserHandler>
+		internal sealed class Setup : SetupBase<Setup.CreateUserVars>
 		{
-			public IUserEncryptionRepository UserEncryption { get; init; } = Substitute.For<IUserEncryptionRepository>();
+			internal override CreateUserHandler GetHandler(CreateUserVars v) =>
+				new(v.Repo, v.UserEncryption, v.Log);
+
+			internal sealed record class CreateUserVars : Vars
+			{
+				public IUserEncryptionRepository UserEncryption { get; init; } =
+					Substitute.For<IUserEncryptionRepository>();
+			}
 		}
 	}
 
-	private (CreateUserHandler, Setup.CreateUserVars) GetVars() =>
-		new Setup().GetVars();
+	internal (CreateUserHandler, TestHandler.Setup.CreateUserVars) GetVars() =>
+		new TestHandler.Setup().GetVars();
 
 	[Fact]
 	public async Task Logs_To_Vrb__With_Query_Using_Redacted_Password()
