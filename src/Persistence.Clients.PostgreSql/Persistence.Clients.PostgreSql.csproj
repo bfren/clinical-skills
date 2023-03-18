@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Clinical Skills: PostgreSQL client.</Description>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>ClinicalSkills.Persistence.Clients.PostgreSql</RootNamespace>
+    <AssemblyName>ClinicalSkills.Persistence.Clients.PostgreSql</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Jeebs.Data.Clients.PostgreSql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistence\Persistence.csproj" PrivateAssets="All" />
+  </ItemGroup>
+</Project>
