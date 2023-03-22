@@ -43,11 +43,11 @@ internal sealed class SaveEntryHandler : QueryHandler<SaveEntryQuery, EntryId>
 		// Ensure the entry belongs to the user
 		if (query.Id?.Value > 0)
 		{
-			var clinicalSettingBelongsToUser = await Dispatcher
+			var entryBelongsToUser = await Dispatcher
 					.DispatchAsync(new CheckEntryBelongsToUserQuery(query.UserId, query.Id))
 					.IsTrueAsync();
 
-			if (!clinicalSettingBelongsToUser)
+			if (!entryBelongsToUser)
 			{
 				return F.None<EntryId>(new EntryDoesNotBelongToUserMsg(query.UserId, query.Id));
 			}

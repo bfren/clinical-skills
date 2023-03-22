@@ -34,10 +34,10 @@ internal sealed record class UpdateEntryCommand(
 	/// <summary>
 	/// Create from a <see cref="SaveEntryQuery"/>
 	/// </summary>
-	/// <param name="clinicalSettingId"></param>
+	/// <param name="entryId"></param>
 	/// <param name="query"></param>
-	public UpdateEntryCommand(EntryId clinicalSettingId, SaveEntryQuery query) : this(
-		Id: clinicalSettingId,
+	public UpdateEntryCommand(EntryId entryId, SaveEntryQuery query) : this(
+		Id: entryId,
 		Version: query.Version,
 		DateOccurred: query.DateOccurred,
 		ClinicalSettingId: query.ClinicalSettingId,
