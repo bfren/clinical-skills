@@ -4,5 +4,9 @@
 }
 
 <div class="container">
-	<h1>Recent Entries</h1>
+	<h2 class="mt-4">
+		Recent Entries
+		<span class="ms-3 fs-4"><a asp-page="/Entries/Index">more &rsaquo;</a></span>
+	</h2>
+	<partial name="Entries/_Recent" model="@Model.RecentEntries" />
 </div>

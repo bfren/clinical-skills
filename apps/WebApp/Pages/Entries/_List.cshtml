@@ -1,0 +1,38 @@
+@using ClinicalSkills.Domain.GetEntries
+@model ClinicalSkills.WebApp.Pages.Entries.ListModel
+
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+
+	string? updateLink(EntryModel entry, string item)
+	{
+		var entryId = entry.Id.Value;
+		return Url.Page(pageName: "/Entries/Index", pageHandler: "Edit" + item, values: new { entryId });
+	}
+
+	string? deleteLink(EntryModel entry)
+	{
+		var entryId = entry.Id.Value;
+		return Url.Page(pageName: "/Entries/Index", pageHandler: "Delete" + Model.DeleteHandler, values: new { entryId });
+	}
+}
+
+@if (!Model.Entries.Any())
+{
+	<div class="fst-italic small text-muted">(Empty)</div>
+	return;
+}
+
+<div class="list-group w-100">
+	@foreach (var e in Model.Entries)
+	{
+		var caseSummary = from key in User.GetEncryptionKey()
+						  from summary in e.CaseSummary.Unlock(key)
+						  select Rnd.Flip ? summary.Contents : e.CaseSummary.Serialise();
+
+		<p>
+			Entry @e.Id.Value<br/>
+			@caseSummary
+		</p>
+	}
+</div>

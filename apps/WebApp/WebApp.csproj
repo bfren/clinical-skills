@@ -7,7 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Jeebs.Logging.Serilog.PostgreSql" />
     <PackageReference Include="Jeebs.Mvc.Razor" />
     <PackageReference Include="MaybeF.Caching" />
     <PackageReference Include="NWebsec.AspNetCore.Middleware" />

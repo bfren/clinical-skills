@@ -1,6 +1,7 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
+using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -12,8 +13,10 @@ namespace ClinicalSkills.WebApp.Pages.Entries;
 [ValidateAntiForgeryToken]
 public sealed partial class IndexModel : PageModel
 {
-	private readonly ILog log;
+	private IDispatcher Dispatcher { get; init; }
 
-	public IndexModel(ILog<IndexModel> log) =>
-		this.log = log;
+	private ILog Log { get; init; }
+
+	public IndexModel(IDispatcher dispatcher, ILog<IndexModel> log) =>
+		(Dispatcher, Log) = (dispatcher, log);
 }

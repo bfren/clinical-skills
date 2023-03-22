@@ -1,0 +1,11 @@
+@using ClinicalSkills.Domain.GetRecentEntries
+@model ClinicalSkills.WebApp.Pages.Entries.RecentModel
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+
+	var listModel = new ListModel("Recent", "recent-journeys") { Entries = Model.Entries };
+}
+
+<div id="recent-journeys">
+	<partial name="_List" model="@listModel"/>
+</div>
