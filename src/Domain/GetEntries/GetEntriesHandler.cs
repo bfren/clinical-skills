@@ -4,12 +4,12 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Domain.GetEntries;
+namespace Domain.GetEntries;
 
 /// <summary>
 /// Get entries

@@ -2,12 +2,12 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System;
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Cryptography;
 using Jeebs.Data;
+using Persistence.Entities;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.GetEntries;
+namespace Domain.GetEntries;
 
 /// <inheritdoc cref="GetEntriesQuery"/>
 public record class EntryModel : IWithVersion<EntryId>

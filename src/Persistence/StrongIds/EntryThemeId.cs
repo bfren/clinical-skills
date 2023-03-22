@@ -3,7 +3,7 @@
 
 using StrongId;
 
-namespace ClinicalSkills.Persistence.StrongIds;
+namespace Persistence.StrongIds;
 
 /// <summary>
 /// Entry Theme ID

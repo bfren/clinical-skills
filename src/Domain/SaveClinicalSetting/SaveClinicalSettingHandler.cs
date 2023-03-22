@@ -2,15 +2,15 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Domain.SaveClinicalSetting.Messages;
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
+using Domain.SaveClinicalSetting.Messages;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Entities;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveClinicalSetting;
+namespace Domain.SaveClinicalSetting;
 
 /// <summary>
 /// Save a clinical setting - create if it doesn't exist, or update if it does

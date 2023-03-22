@@ -3,7 +3,7 @@
 
 using Jeebs.Auth.Data;
 
-namespace ClinicalSkills.Domain.GetUserProfile;
+namespace Domain.GetUserProfile;
 
 /// <summary>
 /// User profile details

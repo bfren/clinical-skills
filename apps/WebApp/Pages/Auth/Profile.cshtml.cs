@@ -1,7 +1,7 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.GetUserProfile;
+using Domain.GetUserProfile;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Jeebs.Mvc;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClinicalSkills.WebApp.Pages.Auth;
+namespace WebApp.Pages.Auth;
 
 [Authorize]
 [ValidateAntiForgeryToken]

@@ -1,11 +1,11 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <summary>
 /// Returns true if <paramref name="EntryId"/> belongs to <paramref name="UserId"/>

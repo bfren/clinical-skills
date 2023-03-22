@@ -1,13 +1,13 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence;
-using ClinicalSkills.Persistence.Clients.PostgreSql;
 using Jeebs.Auth.Data;
 using Jeebs.Auth.Data.Clients.PostgreSql;
 using Jeebs.Cqrs;
 using Microsoft.Extensions.DependencyInjection;
-using D = ClinicalSkills.Domain;
+using Persistence;
+using Persistence.Clients.PostgreSql;
+using D = Domain;
 
 // ==========================================
 //  CONFIGURE

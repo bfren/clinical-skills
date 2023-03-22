@@ -6,7 +6,7 @@ using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 
-namespace ClinicalSkills.Domain.GetUserProfile;
+namespace Domain.GetUserProfile;
 
 /// <summary>
 /// Get user profile

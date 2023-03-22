@@ -3,7 +3,7 @@
 
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ClinicalSkills.Persistence.Clients.PostgreSql;
+namespace Persistence.Clients.PostgreSql;
 
 /// <summary>
 /// <see cref="IServiceCollection"/> extensions

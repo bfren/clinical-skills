@@ -1,11 +1,11 @@
 // Clinical Skills: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
+using Persistence.Entities;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveClinicalSetting.Internals.UpdateClinicalSettingHandler_Tests;
+namespace Domain.SaveClinicalSetting.Internals.UpdateClinicalSettingHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {

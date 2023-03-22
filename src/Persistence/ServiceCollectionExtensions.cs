@@ -1,11 +1,11 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Data;
 using Microsoft.Extensions.DependencyInjection;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Persistence;
+namespace Persistence;
 
 /// <summary>
 /// <see cref="IServiceCollection"/> extensions

@@ -6,7 +6,7 @@ using Jeebs.Apps.Web.Constants;
 using Jeebs.Functions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Components.Footer;
+namespace WebApp.Pages.Components.Footer;
 
 public sealed record class FooterModel(string Build, DateTime LastModified);
 

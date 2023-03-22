@@ -2,6 +2,10 @@
   <PropertyGroup>
     <Description>Clinical Skills: Domain commands and queries.</Description>
   </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Domain</RootNamespace>
+    <AssemblyName>Domain</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Jeebs.Auth.Data.Clients.PostgreSql" />
     <PackageReference Include="Jeebs.Cqrs" />

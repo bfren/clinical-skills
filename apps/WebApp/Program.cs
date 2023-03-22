@@ -1,10 +1,10 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.WebApp;
 using Jeebs;
 using Jeebs.Cqrs;
-using D = ClinicalSkills.Domain;
+using WebApp;
+using D = Domain;
 
 // ==========================================
 //  CONFIGURE

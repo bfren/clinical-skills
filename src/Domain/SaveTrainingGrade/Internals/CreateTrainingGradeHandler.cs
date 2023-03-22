@@ -2,12 +2,12 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveTrainingGrade.Internals;
+namespace Domain.SaveTrainingGrade.Internals;
 
 /// <summary>
 /// Create a new training grade entity

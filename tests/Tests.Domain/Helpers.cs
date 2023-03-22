@@ -7,7 +7,7 @@ using Jeebs.Data.Testing.Query;
 using Jeebs.Logging;
 using StrongId;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 internal static class Helpers
 {

@@ -2,11 +2,11 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Collections.Generic;
-using ClinicalSkills.Domain.GetRecentEntries;
+using Domain.GetRecentEntries;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <inheritdoc cref="GetRecentEntriesHandler"/>
 /// <param name="UserId"></param>

@@ -1,12 +1,12 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.SaveClinicalSetting;
-using ClinicalSkills.Persistence.StrongIds;
+using Domain.SaveClinicalSetting;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <inheritdoc cref="SaveClinicalSettingHandler"/>
 /// <param name="UserId">User ID</param>

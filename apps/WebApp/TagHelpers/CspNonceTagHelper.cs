@@ -10,7 +10,7 @@ using NWebsec.AspNetCore.Core.Helpers;
 using NWebsec.AspNetCore.Core.Web;
 using NWebsec.Mvc.Common.Helpers;
 
-namespace ClinicalSkills.WebApp.TagHelpers;
+namespace WebApp.TagHelpers;
 
 [HtmlTargetElement(ScriptTag, Attributes = CspNonceAttributeName)]
 [HtmlTargetElement(StyleTag, Attributes = CspNonceAttributeName)]

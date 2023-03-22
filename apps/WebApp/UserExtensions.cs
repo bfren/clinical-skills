@@ -4,7 +4,7 @@
 using System.Security.Claims;
 using MaybeF.Extensions;
 
-namespace ClinicalSkills.WebApp;
+namespace WebApp;
 
 public static class UserExtensions
 {

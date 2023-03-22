@@ -1,10 +1,10 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.StrongIds;
+using Persistence.StrongIds;
 using StrongId;
 
-namespace ClinicalSkills.Persistence.Entities;
+namespace Persistence.Entities;
 
 /// <summary>
 /// Entry Skill entity (for many-to-many mapping)

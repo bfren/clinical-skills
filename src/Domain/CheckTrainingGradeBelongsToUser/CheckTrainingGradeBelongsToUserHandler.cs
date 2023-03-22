@@ -2,13 +2,13 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Entities;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Domain.CheckTrainingGradeBelongsToUser;
+namespace Domain.CheckTrainingGradeBelongsToUser;
 
 /// <summary>
 /// Check a training grade belongs to a user

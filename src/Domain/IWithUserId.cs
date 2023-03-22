@@ -3,7 +3,7 @@
 
 using Jeebs.Auth.Data;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <summary>
 /// Specifies a class has a 'UserId' property

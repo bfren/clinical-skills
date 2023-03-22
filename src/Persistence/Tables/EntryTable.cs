@@ -4,7 +4,7 @@
 using Jeebs.Data.Attributes;
 using Jeebs.Data.Map;
 
-namespace ClinicalSkills.Persistence.Tables;
+namespace Persistence.Tables;
 
 /// <summary>
 /// Entry table

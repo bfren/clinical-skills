@@ -11,7 +11,7 @@ using Jeebs.Logging;
 using Jeebs.Mvc.Auth.Functions;
 using Microsoft.Extensions.Options;
 
-namespace ClinicalSkills.WebApp.Pages.Auth;
+namespace WebApp.Pages.Auth;
 
 public sealed class SignInModel : Jeebs.Mvc.Razor.Pages.Auth.SignInModel
 {

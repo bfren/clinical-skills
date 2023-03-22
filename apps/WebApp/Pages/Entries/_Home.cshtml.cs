@@ -1,14 +1,14 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain;
+using Domain;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Jeebs.Mvc.Auth;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Entries;
+namespace WebApp.Pages.Entries;
 
 public sealed record class HomeModel
 {

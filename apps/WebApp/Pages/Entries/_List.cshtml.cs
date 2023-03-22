@@ -1,9 +1,9 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.GetEntries;
+using Domain.GetEntries;
 
-namespace ClinicalSkills.WebApp.Pages.Entries;
+namespace WebApp.Pages.Entries;
 
 public sealed record class ListModel
 {

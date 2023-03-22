@@ -2,15 +2,15 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Domain.SaveEntry.Messages;
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
+using Domain.SaveEntry.Messages;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Entities;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveEntry;
+namespace Domain.SaveEntry;
 
 /// <summary>
 /// Save a entry - create if it doesn't exist, or update if it does

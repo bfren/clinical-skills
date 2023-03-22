@@ -4,7 +4,7 @@
 using Jeebs.Apps.Web.Constants;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Components.Header;
+namespace WebApp.Pages.Components.Header;
 
 public sealed class Menu
 {

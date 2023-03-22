@@ -4,7 +4,7 @@
 using Jeebs.Auth.Data;
 using Jeebs.Logging;
 
-namespace ClinicalSkills.Domain.GetUserProfile.GetUserProfileHandler_Tests;
+namespace Domain.GetUserProfile.GetUserProfileHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {

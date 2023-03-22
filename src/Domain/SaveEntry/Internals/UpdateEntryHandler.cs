@@ -2,13 +2,13 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using MaybeF.Caching;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveEntry.Internals;
+namespace Domain.SaveEntry.Internals;
 
 /// <summary>
 /// Update an existing entry entity

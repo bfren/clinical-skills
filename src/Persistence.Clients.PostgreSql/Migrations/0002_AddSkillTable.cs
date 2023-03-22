@@ -2,10 +2,10 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System;
-using ClinicalSkills.Persistence.Tables;
+using Persistence.Tables;
 using SimpleMigrations;
 
-namespace ClinicalSkills.Persistence.Clients.PostgreSql.Migrations;
+namespace Persistence.Clients.PostgreSql.Migrations;
 
 [Migration(2, "Add skill table")]
 public sealed class AddSkillTable : Migration

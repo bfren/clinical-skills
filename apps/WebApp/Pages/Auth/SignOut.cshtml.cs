@@ -3,6 +3,6 @@
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClinicalSkills.WebApp.Pages.Auth;
+namespace WebApp.Pages.Auth;
 
 public sealed class SignOutModel : PageModel { }

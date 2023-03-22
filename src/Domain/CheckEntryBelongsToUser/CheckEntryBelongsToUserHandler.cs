@@ -2,13 +2,13 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Entities;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Domain.CheckEntryBelongsToUser;
+namespace Domain.CheckEntryBelongsToUser;
 
 /// <summary>
 /// Check an entry belongs to a user

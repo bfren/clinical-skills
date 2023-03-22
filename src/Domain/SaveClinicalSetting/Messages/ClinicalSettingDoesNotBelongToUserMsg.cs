@@ -1,11 +1,11 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Messages;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveClinicalSetting.Messages;
+namespace Domain.SaveClinicalSetting.Messages;
 
 /// <summary>Clinical Setting does not belong to a user</summary>
 /// <param name="UserId"></param>

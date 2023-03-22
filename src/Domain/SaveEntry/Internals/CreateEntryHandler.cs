@@ -3,12 +3,12 @@
 
 using System;
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveEntry.Internals;
+namespace Domain.SaveEntry.Internals;
 
 /// <summary>
 /// Create a new entry entity

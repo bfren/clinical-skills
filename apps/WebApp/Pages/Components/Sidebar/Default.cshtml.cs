@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Components.Sidebar;
+namespace WebApp.Pages.Components.Sidebar;
 
 public sealed class SidebarViewComponent : ViewComponent
 {

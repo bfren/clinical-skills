@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClinicalSkills.WebApp.Pages.Entries;
+namespace WebApp.Pages.Entries;
 
 [Authorize]
 [ValidateAntiForgeryToken]

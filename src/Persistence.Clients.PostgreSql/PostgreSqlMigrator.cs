@@ -3,7 +3,7 @@
 
 using Npgsql;
 
-namespace ClinicalSkills.Persistence.Clients.PostgreSql;
+namespace Persistence.Clients.PostgreSql;
 
 /// <summary>
 /// Sqlite database client migrator

@@ -1,10 +1,10 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.InsertTestData;
+using Domain.InsertTestData;
 using Jeebs.Cqrs;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <inheritdoc cref="InsertTestDataHandler"/>
 public sealed record class InsertTestDataCommand : Command;

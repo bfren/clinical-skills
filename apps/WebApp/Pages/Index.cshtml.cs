@@ -3,6 +3,6 @@
 
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace ClinicalSkills.WebApp.Pages;
+namespace WebApp.Pages;
 
 public sealed class IndexModel : PageModel { }

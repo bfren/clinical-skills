@@ -2,12 +2,12 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Cryptography;
 using Jeebs.Data;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Persistence.Entities;
+namespace Persistence.Entities;
 
 /// <summary>
 /// Entry entity

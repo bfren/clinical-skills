@@ -3,13 +3,13 @@
 
 using System.Data;
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence;
-using ClinicalSkills.Persistence.Tables;
 using Jeebs.Cqrs;
 using Jeebs.Data;
 using Jeebs.Logging;
+using Persistence;
+using Persistence.Tables;
 
-namespace ClinicalSkills.Domain.TruncateEverything;
+namespace Domain.TruncateEverything;
 
 /// <summary>
 /// Truncate all tables

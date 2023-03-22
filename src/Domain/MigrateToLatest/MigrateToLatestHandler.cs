@@ -2,13 +2,13 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Data;
 using Jeebs.Logging;
+using Persistence;
 
-namespace ClinicalSkills.Domain.MigrateToLatest;
+namespace Domain.MigrateToLatest;
 
 /// <summary>
 /// Migrate databases to the latest version

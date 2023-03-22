@@ -1,14 +1,14 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Tables;
 using Jeebs.Config.Db;
 using Jeebs.Data;
 using Jeebs.Logging;
 using Microsoft.Extensions.Options;
+using Persistence.Entities;
+using Persistence.Tables;
 
-namespace ClinicalSkills.Persistence;
+namespace Persistence;
 
 /// <summary>
 /// Clinical Skills database

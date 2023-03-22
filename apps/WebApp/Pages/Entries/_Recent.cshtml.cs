@@ -1,12 +1,12 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain;
-using ClinicalSkills.Domain.GetRecentEntries;
+using Domain;
+using Domain.GetRecentEntries;
 using Jeebs.Mvc.Auth;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Entries;
+namespace WebApp.Pages.Entries;
 
 public sealed record class RecentModel
 {

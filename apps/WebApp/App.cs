@@ -1,19 +1,19 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence;
-using ClinicalSkills.Persistence.Clients.PostgreSql;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Apps.Web;
 using Jeebs.Auth.Data.Clients.PostgreSql;
 using Jeebs.Cqrs;
 using Jeebs.Mvc.Auth;
 using MaybeF.Caching;
 using Microsoft.AspNetCore.Mvc;
+using Persistence;
+using Persistence.Clients.PostgreSql;
+using Persistence.StrongIds;
 using Serilog;
 using StrongId.Mvc;
 
-namespace ClinicalSkills.WebApp;
+namespace WebApp;
 
 public sealed class App : RazorApp
 {

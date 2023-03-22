@@ -2,14 +2,14 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Cryptography;
 using Jeebs.Logging;
+using Persistence.Repositories;
 using RndF;
 
-namespace ClinicalSkills.Domain.CreateUser;
+namespace Domain.CreateUser;
 
 /// <summary>
 /// Create a new user

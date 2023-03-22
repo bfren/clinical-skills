@@ -3,11 +3,11 @@
 
 using System;
 using System.Collections.Generic;
-using ClinicalSkills.Domain.GetEntries;
+using Domain.GetEntries;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <inheritdoc cref="GetEntriesHandler"/>
 /// <param name="UserId"></param>

@@ -2,13 +2,13 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System;
-using ClinicalSkills.Domain.SaveEntry;
-using ClinicalSkills.Persistence.StrongIds;
+using Domain.SaveEntry;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Cryptography;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain;
+namespace Domain;
 
 /// <inheritdoc cref="SaveEntryHandler"/>
 /// <param name="UserId">User ID</param>

@@ -3,12 +3,12 @@
 
 using System;
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Jeebs.Messages;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Domain.GetUserEncryptionKey;
+namespace Domain.GetUserEncryptionKey;
 
 /// <summary>
 /// Retrieve a user's encryption key from the database

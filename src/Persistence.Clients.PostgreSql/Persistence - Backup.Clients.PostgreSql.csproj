@@ -2,6 +2,10 @@
   <PropertyGroup>
     <Description>Clinical Skills: PostgreSQL client.</Description>
   </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Persistence.Clients.PostgreSql</RootNamespace>
+    <AssemblyName>Persistence.Clients.PostgreSql</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Jeebs.Data.Clients.PostgreSql" />
   </ItemGroup>

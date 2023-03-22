@@ -4,7 +4,7 @@
 using Jeebs.Mvc.Auth;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Entries;
+namespace WebApp.Pages.Entries;
 
 public sealed record class MenuItem(
 	string Text,

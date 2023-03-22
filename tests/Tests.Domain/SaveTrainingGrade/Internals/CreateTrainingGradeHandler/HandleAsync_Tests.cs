@@ -1,12 +1,12 @@
 // Clinical Skills: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.Entities;
-using ClinicalSkills.Persistence.Repositories;
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
+using Persistence.Entities;
+using Persistence.Repositories;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveTrainingGrade.Internals.CreateTrainingGradeHandler_Tests;
+namespace Domain.SaveTrainingGrade.Internals.CreateTrainingGradeHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {

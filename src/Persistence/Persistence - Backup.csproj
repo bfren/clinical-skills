@@ -2,6 +2,10 @@
   <PropertyGroup>
     <Description>Clinical Skills: Persistence library.</Description>
   </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Persistence</RootNamespace>
+    <AssemblyName>Persistence</AssemblyName>
+  </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Jeebs.Auth.Data" />
     <PackageReference Include="Jeebs.Cryptography" />

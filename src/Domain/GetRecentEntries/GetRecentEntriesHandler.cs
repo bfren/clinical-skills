@@ -3,12 +3,12 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClinicalSkills.Persistence.Repositories;
 using Jeebs.Cqrs;
 using Jeebs.Data.Enums;
 using Jeebs.Logging;
+using Persistence.Repositories;
 
-namespace ClinicalSkills.Domain.GetRecentEntries;
+namespace Domain.GetRecentEntries;
 
 /// <summary>
 /// Get recent entries

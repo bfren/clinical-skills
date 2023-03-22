@@ -4,7 +4,7 @@
 using Jeebs.Logging;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ClinicalSkills.WebApp.Pages.Auth;
+namespace WebApp.Pages.Auth;
 
 public sealed class IndexModel : Jeebs.Mvc.Razor.Pages.Auth.IndexModel
 {

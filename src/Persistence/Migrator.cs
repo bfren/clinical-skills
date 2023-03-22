@@ -8,7 +8,7 @@ using SimpleMigrations;
 using SimpleMigrations.Console;
 using SimpleMigrations.DatabaseProvider;
 
-namespace ClinicalSkills.Persistence;
+namespace Persistence;
 
 /// <summary>
 /// Enables simple database migrations

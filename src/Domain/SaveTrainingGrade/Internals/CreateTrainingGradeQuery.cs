@@ -1,11 +1,11 @@
 // Clinical Skills
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
+using Persistence.StrongIds;
 
-namespace ClinicalSkills.Domain.SaveTrainingGrade.Internals;
+namespace Domain.SaveTrainingGrade.Internals;
 
 /// <inheritdoc cref="CreateTrainingGradeHandler"/>
 /// <param name="UserId">User ID</param>

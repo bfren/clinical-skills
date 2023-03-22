@@ -3,17 +3,17 @@
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using ClinicalSkills.Domain.SaveClinicalSetting.Internals;
-using ClinicalSkills.Domain.SaveEntry.Internals;
-using ClinicalSkills.Domain.SaveTrainingGrade.Internals;
-using ClinicalSkills.Persistence.StrongIds;
+using Domain.SaveClinicalSetting.Internals;
+using Domain.SaveEntry.Internals;
+using Domain.SaveTrainingGrade.Internals;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Cryptography.Functions;
 using Jeebs.Logging;
+using Persistence.StrongIds;
 using RndF;
 
-namespace ClinicalSkills.Domain.InsertTestData;
+namespace Domain.InsertTestData;
 
 /// <summary>
 /// Insert test data
