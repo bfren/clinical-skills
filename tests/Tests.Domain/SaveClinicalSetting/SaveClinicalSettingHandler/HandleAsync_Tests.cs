@@ -1,7 +1,6 @@
 // Clinical Skills: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.CheckClinicalSettingBelongsToUser;
 using ClinicalSkills.Domain.SaveClinicalSetting.Internals;
 using ClinicalSkills.Domain.SaveClinicalSetting.Messages;
 using ClinicalSkills.Persistence.Entities;

@@ -5,7 +5,7 @@ using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 
-namespace ClinicalSkills.Domain.CheckClinicalSettingBelongsToUser;
+namespace ClinicalSkills.Domain;
 
 /// <summary>
 /// Returns true if <paramref name="ClinicalSettingId"/> belongs to <paramref name="UserId"/>

@@ -20,7 +20,7 @@ var dispatcher = app.Services.GetRequiredService<IDispatcher>();
 log.Inf("Migrate database to latest version.");
 _ = await dispatcher
 	.DispatchAsync(
-		new D.MigrateToLatest.MigrateToLatestCommand()
+		new D.MigrateToLatestCommand()
 	)
 	.LogBoolAsync(
 		log
@@ -39,7 +39,7 @@ if (Env("TRUNCATE") == "true")
 	log.Wrn("Truncating database tables.");
 	_ = await dispatcher
 		.DispatchAsync(
-			new D.TruncateEverything.TruncateEverythingCommand()
+			new D.TruncateEverythingCommand()
 		)
 		.LogBoolAsync(
 			log
@@ -48,7 +48,7 @@ if (Env("TRUNCATE") == "true")
 	log.Inf("Inserting test data.");
 	_ = await dispatcher
 		.DispatchAsync(
-			new D.InsertTestData.InsertTestDataCommand()
+			new D.InsertTestDataCommand()
 		)
 		.LogBoolAsync(
 			log
@@ -60,7 +60,7 @@ else if (Env("CLINICALSKILLS_USER_EMAIL") is string email && Env("CLINICALSKILLS
 	log.Inf("Attempting to create user {Name} with {Email}.", name, email);
 	_ = await dispatcher
 		.DispatchAsync(
-			new D.CreateUser.CreateUserQuery(name, email, pass)
+			new D.CreateUserQuery(name, email, pass)
 		)
 		.AuditAsync(
 			some: x => log.Inf("Created user {Id}.", x.Value),

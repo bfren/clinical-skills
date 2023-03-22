@@ -2,7 +2,6 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using System.Security.Claims;
-using ClinicalSkills.Domain.GetUserEncryptionKey;
 using Jeebs.Auth;
 using Jeebs.Auth.Data;
 using Jeebs.Auth.Data.Models;
@@ -33,7 +32,7 @@ public sealed class SignInModel : Jeebs.Mvc.Razor.Pages.Auth.SignInModel
 	private Task<List<Claim>> GetEncryptionKeyAsync(AuthUserModel user, string password) =>
 		dispatcher
 			.DispatchAsync(
-				new GetUserEncryptionKeyQuery(user.Id, password)
+				new Domain.GetUserEncryptionKeyQuery(user.Id, password)
 			)
 			.SwitchAsync(
 				some: k => new List<Claim> { new(Domain.ClaimTypes.EncryptionKey, k) },

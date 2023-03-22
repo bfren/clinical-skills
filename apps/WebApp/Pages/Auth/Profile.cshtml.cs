@@ -2,7 +2,6 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using ClinicalSkills.Domain.GetUserProfile;
-using ClinicalSkills.Domain.InsertTestData;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Jeebs.Mvc;
@@ -29,7 +28,7 @@ public sealed partial class ProfileModel : PageModel
 	public async Task<IActionResult> OnGetAsync()
 	{
 		var query = from u in User.GetUserId()
-					from p in Dispatcher.DispatchAsync(new GetUserProfileQuery(u))
+					from p in Dispatcher.DispatchAsync(new Domain.GetUserProfileQuery(u))
 					select p;
 
 		await foreach (var profile in query)
@@ -43,7 +42,7 @@ public sealed partial class ProfileModel : PageModel
 
 	public async Task<IActionResult> OnGetInsertTestDataAsync()
 	{
-		var query = from r in Dispatcher.DispatchAsync(new InsertTestDataCommand())
+		var query = from r in Dispatcher.DispatchAsync(new Domain.InsertTestDataCommand())
 					select r;
 
 		return await query
