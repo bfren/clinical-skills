@@ -17,7 +17,7 @@ internal sealed class UpdateClinicalSettingHandler : CommandHandler<UpdateClinic
 {
 	private IMaybeCache<ClinicalSettingId> Cache { get; init; }
 
-	private IClinicalSettingRepository Car { get; init; }
+	private IClinicalSettingRepository ClinicalSetting { get; init; }
 
 	private ILog<UpdateClinicalSettingHandler> Log { get; init; }
 
@@ -28,7 +28,7 @@ internal sealed class UpdateClinicalSettingHandler : CommandHandler<UpdateClinic
 	/// <param name="clinicalSetting"></param>
 	/// <param name="log"></param>
 	public UpdateClinicalSettingHandler(IMaybeCache<ClinicalSettingId> cache, IClinicalSettingRepository clinicalSetting, ILog<UpdateClinicalSettingHandler> log) =>
-		(Cache, Car, Log) = (cache, clinicalSetting, log);
+		(Cache, ClinicalSetting, Log) = (cache, clinicalSetting, log);
 
 	/// <summary>
 	/// Update a clinical setting from <paramref name="command"/>
@@ -37,7 +37,7 @@ internal sealed class UpdateClinicalSettingHandler : CommandHandler<UpdateClinic
 	public override Task<Maybe<bool>> HandleAsync(UpdateClinicalSettingCommand command)
 	{
 		Log.Vrb("Updating Clinical Setting: {Command}", command);
-		return Car
+		return ClinicalSetting
 			.UpdateAsync(command)
 			.IfSomeAsync(x => { if (x) { Cache.RemoveValue(command.Id); } });
 	}
