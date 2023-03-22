@@ -32,7 +32,7 @@ public sealed class App : RazorApp
 
 		_ = services
 			.AddMemoryCache()
-			.AddMaybeCache<EntryId>();
+			.AddMaybeCache<ClinicalSettingId>();
 	}
 
 	protected override void ConfigureResponseCompression(WebApplication app)
