@@ -26,13 +26,10 @@
 <div class="list-group w-100">
 	@foreach (var e in Model.Entries)
 	{
-		var caseSummary = from key in User.GetEncryptionKey()
-						  from summary in e.CaseSummary.Unlock(key)
-						  select Rnd.Flip ? summary.Contents : e.CaseSummary.Serialise();
-
 		<p>
 			Entry @e.Id.Value<br/>
-			@caseSummary
+			@User.Decrypt(e.CaseSummary)<br/>
+			@User.Decrypt(e.LearningPoints)
 		</p>
 	}
 </div>
