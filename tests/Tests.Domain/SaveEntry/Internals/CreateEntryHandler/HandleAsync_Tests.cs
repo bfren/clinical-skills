@@ -63,6 +63,8 @@ public sealed class HandleAsync_Tests
 			&& x.PatientAge == patientAge
 			&& x.CaseSummary == caseSummary
 			&& x.LearningPoints == learningPoints
+			&& x.Created != DateTime.MinValue
+			&& x.LastUpdated != DateTime.MinValue
 		));
 	}
 

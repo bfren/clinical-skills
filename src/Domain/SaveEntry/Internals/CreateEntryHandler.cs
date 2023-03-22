@@ -34,6 +34,7 @@ internal sealed class CreateEntryHandler : QueryHandler<CreateEntryQuery, EntryI
 	public override Task<Maybe<EntryId>> HandleAsync(CreateEntryQuery query)
 	{
 		Log.Vrb("Creating Entry: {Query}", query);
+		var now = DateTime.Now;
 		return Entry
 			.CreateAsync(new()
 			{
@@ -44,7 +45,8 @@ internal sealed class CreateEntryHandler : QueryHandler<CreateEntryQuery, EntryI
 				PatientAge = query.PatientAge,
 				CaseSummary = query.CaseSummary,
 				LearningPoints = query.LearningPoints,
-				Created = DateTime.Now
+				Created = now,
+				LastUpdated = now
 			});
 	}
 }
