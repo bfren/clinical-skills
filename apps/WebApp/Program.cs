@@ -38,13 +38,21 @@ if (Env("TRUNCATE") == "true")
 {
 	log.Wrn("Truncating database tables.");
 	_ = await dispatcher
-		.DispatchAsync(new D.TruncateEverything.TruncateEverythingCommand())
-		.LogBoolAsync(log);
+		.DispatchAsync(
+			new D.TruncateEverything.TruncateEverythingCommand()
+		)
+		.LogBoolAsync(
+			log
+		);
 
 	log.Inf("Inserting test data.");
 	_ = await dispatcher
-		.DispatchAsync(new D.InsertTestData.InsertTestDataCommand())
-		.LogBoolAsync(log);
+		.DispatchAsync(
+			new D.InsertTestData.InsertTestDataCommand()
+		)
+		.LogBoolAsync(
+			log
+		);
 }
 else if (Env("CLINICALSKILLS_USER_EMAIL") is string email && Env("CLINICALSKILLS_USER_PASS") is string pass)
 {
