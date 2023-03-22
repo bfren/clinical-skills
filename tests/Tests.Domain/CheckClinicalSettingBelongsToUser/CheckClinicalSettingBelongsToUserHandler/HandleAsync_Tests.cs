@@ -48,16 +48,16 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
 			.Returns(new ClinicalSettingEntity());
-		var ClinicalSettingId = LongId<ClinicalSettingId>();
+		var clinicalSettingId = LongId<ClinicalSettingId>();
 		var userId = LongId<AuthUserId>();
-		var query = new CheckClinicalSettingBelongsToUserQuery(userId, ClinicalSettingId);
+		var query = new CheckClinicalSettingBelongsToUserQuery(userId, clinicalSettingId);
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
 		v.Fluent.AssertCalls(
-			c => FluentQueryHelper.AssertWhere<ClinicalSettingEntity, ClinicalSettingId>(c, x => x.Id, Compare.Equal, ClinicalSettingId),
+			c => FluentQueryHelper.AssertWhere<ClinicalSettingEntity, ClinicalSettingId>(c, x => x.Id, Compare.Equal, clinicalSettingId),
 			c => FluentQueryHelper.AssertWhere<ClinicalSettingEntity, AuthUserId>(c, x => x.UserId, Compare.Equal, userId),
 			_ => { }
 		);
