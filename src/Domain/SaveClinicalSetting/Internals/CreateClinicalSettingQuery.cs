@@ -9,10 +9,10 @@ namespace Domain.SaveClinicalSetting.Internals;
 
 /// <inheritdoc cref="CreateClinicalSettingHandler"/>
 /// <param name="UserId">User ID</param>
-/// <param name="Description">Description</param>
+/// <param name="Name">Name</param>
 internal sealed record class CreateClinicalSettingQuery(
 	AuthUserId UserId,
-	string Description
+	string Name
 ) : Query<ClinicalSettingId>, IWithUserId
 {
 	/// <summary>
@@ -21,7 +21,7 @@ internal sealed record class CreateClinicalSettingQuery(
 	/// <param name="query"></param>
 	public CreateClinicalSettingQuery(SaveClinicalSettingQuery query) : this(
 		UserId: query.UserId,
-		Description: query.Description
+		Name: query.Name
 	)
 	{ }
 }

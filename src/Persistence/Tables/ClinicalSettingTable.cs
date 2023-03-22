@@ -30,7 +30,7 @@ public sealed record class ClinicalSettingTable() : Table(Constants.Schema, Tabl
 	public string UserId =>
 		$"{TableName}_user_id";
 
-	/// <inheritdoc cref="Entities.ClinicalSettingEntity.Description"/>
-	public string Description =>
-		$"{TableName}_description";
+	/// <inheritdoc cref="Entities.ClinicalSettingEntity.Name"/>
+	public string Name =>
+		$"{TableName}_name";
 }

@@ -10,11 +10,11 @@ namespace Domain.SaveClinicalSetting.Internals;
 /// <inheritdoc cref="UpdateClinicalSettingHandler"/>
 /// <param name="Id">Clinical Setting ID</param>
 /// <param name="Version">Entity Version</param>
-/// <param name="Description">Description</param>
+/// <param name="Name">Name</param>
 internal sealed record class UpdateClinicalSettingCommand(
 	ClinicalSettingId Id,
 	long Version,
-	string Description
+	string Name
 ) : Command, IWithVersion<ClinicalSettingId>
 {
 	/// <summary>
@@ -25,7 +25,7 @@ internal sealed record class UpdateClinicalSettingCommand(
 	public UpdateClinicalSettingCommand(ClinicalSettingId clinicalSettingId, SaveClinicalSettingQuery query) : this(
 		Id: clinicalSettingId,
 		Version: query.Version,
-		Description: query.Description
+		Name: query.Name
 	)
 	{ }
 }

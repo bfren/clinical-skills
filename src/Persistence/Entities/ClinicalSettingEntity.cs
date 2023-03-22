@@ -28,7 +28,7 @@ public sealed record class ClinicalSettingEntity : IWithVersion<ClinicalSettingI
 	public AuthUserId UserId { get; init; } = new();
 
 	/// <summary>
-	/// Clinical Setting description
+	/// Clinical Setting name
 	/// </summary>
-	public string Description { get; init; } = string.Empty;
+	public string Name { get; init; } = string.Empty;
 }

@@ -117,8 +117,8 @@ public sealed class HandleAsync_Tests
 		var userId = LongId<AuthUserId>();
 		var clinicalSettingId = LongId<ClinicalSettingId>();
 		var version = Rnd.Lng;
-		var description = Rnd.Str;
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, version, description);
+		var name = Rnd.Str;
+		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, version, name);
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
@@ -133,7 +133,7 @@ public sealed class HandleAsync_Tests
 			Arg.Is<UpdateClinicalSettingCommand>(x =>
 				x.Id == clinicalSettingId
 				&& x.Version == version
-				&& x.Description == description
+				&& x.Name == name
 			)
 		);
 	}
@@ -169,8 +169,8 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var description = Rnd.Str;
-		var query = new SaveClinicalSettingQuery(userId, null, 0L, description);
+		var name = Rnd.Str;
+		var query = new SaveClinicalSettingQuery(userId, null, 0L, name);
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
@@ -184,7 +184,7 @@ public sealed class HandleAsync_Tests
 		await v.Dispatcher.Received().DispatchAsync(
 			Arg.Is<CreateClinicalSettingQuery>(c =>
 				c.UserId == userId
-				&& c.Description == description
+				&& c.Name == name
 			)
 		);
 	}

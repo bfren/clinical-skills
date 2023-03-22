@@ -22,7 +22,7 @@ public sealed class AddClinicalSettingTable : Migration
 			{Col(e => e.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
 			{Col(e => e.Version)} integer NOT NULL DEFAULT 0,
 			{Col(e => e.UserId)} integer NOT NULL,
-			{Col(e => e.Description)} text COLLATE pg_catalog."en-GB-x-icu" NOT NULL,
+			{Col(e => e.Name)} text COLLATE pg_catalog."en-GB-x-icu" NOT NULL,
 			CONSTRAINT {Col(c => c.Id)}_key PRIMARY KEY({Col(c => c.Id)})
 		)
 		TABLESPACE pg_default

@@ -12,24 +12,24 @@ namespace Domain;
 /// <param name="UserId">User ID</param>
 /// <param name="Id">Clinical Setting ID</param>
 /// <param name="Version">Entity Verion</param>
-/// <param name="Description">Description</param>
+/// <param name="Name">Name</param>
 public sealed record class SaveClinicalSettingQuery(
 	AuthUserId UserId,
 	ClinicalSettingId? Id,
 	long Version,
-	string Description
+	string Name
 ) : Query<ClinicalSettingId>, IWithUserId
 {
 	/// <summary>
 	/// Create with minimum required values (for new clinical settings)
 	/// </summary>
 	/// <param name="userId"></param>
-	/// <param name="description"></param>
-	public SaveClinicalSettingQuery(AuthUserId userId, string description) : this(
+	/// <param name="name"></param>
+	public SaveClinicalSettingQuery(AuthUserId userId, string name) : this(
 		UserId: userId,
 		Id: null,
 		Version: 0L,
-		Description: description
+		Name: name
 	)
 	{ }
 

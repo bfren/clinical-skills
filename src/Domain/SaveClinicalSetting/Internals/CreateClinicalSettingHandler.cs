@@ -37,7 +37,7 @@ internal sealed class CreateClinicalSettingHandler : QueryHandler<CreateClinical
 			.CreateAsync(new()
 			{
 				UserId = query.UserId,
-				Description = query.Description
+				Name = query.Name
 			});
 	}
 }

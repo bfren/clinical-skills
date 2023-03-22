@@ -42,8 +42,8 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var description = Rnd.Str;
-		var query = new CreateClinicalSettingQuery(userId, description);
+		var name = Rnd.Str;
+		var query = new CreateClinicalSettingQuery(userId, name);
 
 		// Act
 		await handler.HandleAsync(query);
@@ -51,7 +51,7 @@ public sealed class HandleAsync_Tests
 		// Assert
 		await v.Repo.Received().CreateAsync(Arg.Is<ClinicalSettingEntity>(x =>
 			x.UserId == userId
-			&& x.Description == description
+			&& x.Name == name
 		));
 	}
 
