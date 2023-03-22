@@ -38,8 +38,8 @@ internal sealed class TruncateEverythingHandler : CommandHandler<TruncateEveryth
 
 		Task truncate(string schema, string table, IDbTransaction transaction)
 		{
-			Log.Dbg("Truncating table {Table}.", table);
-			return Db.ExecuteAsync($"DELETE FROM \"{schema}.{table}\";", null, CommandType.Text, transaction);
+			Log.Dbg("Truncating table {Schema}.{Table}.", schema, table);
+			return Db.ExecuteAsync($"TRUNCATE TABLE {schema}.{table};", null, CommandType.Text, transaction);
 		}
 
 		using var w = await Db.StartWorkAsync();
