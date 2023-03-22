@@ -11,7 +11,7 @@ using Jeebs.Logging;
 namespace ClinicalSkills.Domain.CheckClinicalSettingBelongsToUser;
 
 /// <summary>
-/// Check a car belongs to a user
+/// Check a clinical setting belongs to a user
 /// </summary>
 internal sealed class CheckClinicalSettingBelongsToUserHandler : QueryHandler<CheckClinicalSettingBelongsToUserQuery, bool>
 {

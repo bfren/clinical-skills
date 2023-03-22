@@ -1,7 +1,6 @@
 // Clinical Skills: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.CheckClinicalSettingBelongsToUser;
 using ClinicalSkills.Persistence.Entities;
 using ClinicalSkills.Persistence.Repositories;
 using ClinicalSkills.Persistence.StrongIds;
@@ -10,7 +9,7 @@ using Jeebs.Data.Enums;
 using Jeebs.Data.Testing.Query;
 using Jeebs.Messages;
 
-namespace ClinicalSkills.Domain.CheckCClinicalSettingBelongsToUser.CheckClinicalSettingBelongsToUserHandler_Tests;
+namespace ClinicalSkills.Domain.CheckClinicalSettingBelongsToUser.CheckClinicalSettingBelongsToUserHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {
