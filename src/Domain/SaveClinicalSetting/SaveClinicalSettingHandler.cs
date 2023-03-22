@@ -44,8 +44,8 @@ internal sealed class SaveClinicalSettingHandler : QueryHandler<SaveClinicalSett
 		if (query.Id?.Value > 0)
 		{
 			var clinicalSettingBelongsToUser = await Dispatcher
-					.DispatchAsync(new CheckClinicalSettingBelongsToUserQuery(query.UserId, query.Id))
-					.IsTrueAsync();
+				.DispatchAsync(new CheckClinicalSettingBelongsToUserQuery(query.UserId, query.Id))
+				.IsTrueAsync();
 
 			if (!clinicalSettingBelongsToUser)
 			{

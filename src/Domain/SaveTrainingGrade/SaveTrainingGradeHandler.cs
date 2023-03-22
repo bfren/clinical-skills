@@ -44,8 +44,8 @@ internal sealed class SaveTrainingGradeHandler : QueryHandler<SaveTrainingGradeQ
 		if (query.Id?.Value > 0)
 		{
 			var trainingGradeBelongsToUser = await Dispatcher
-					.DispatchAsync(new CheckTrainingGradeBelongsToUserQuery(query.UserId, query.Id))
-					.IsTrueAsync();
+				.DispatchAsync(new CheckTrainingGradeBelongsToUserQuery(query.UserId, query.Id))
+				.IsTrueAsync();
 
 			if (!trainingGradeBelongsToUser)
 			{
