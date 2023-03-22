@@ -36,14 +36,11 @@ public sealed class HandleAsync_Tests
 	}
 
 	[Fact]
-	public async Task Calls_Repo_CreateAsync__With_Correct_Values()
+	public async Task Calls_Repo_UpdateAsync__With_Correct_Values()
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var version = Rnd.Lng;
-		var description = Rnd.Str;
-		var command = new UpdateClinicalSettingCommand(clinicalSettingId, version, description);
+		var command = new UpdateClinicalSettingCommand(LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
 
 		// Act
 		await handler.HandleAsync(command);

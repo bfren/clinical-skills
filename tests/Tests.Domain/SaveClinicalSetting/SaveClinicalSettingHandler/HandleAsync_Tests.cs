@@ -51,7 +51,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
 		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, Rnd.Lng, Rnd.Str);
+		var query = new SaveClinicalSettingQuery { UserId = userId, Id = clinicalSettingId };
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
@@ -72,7 +72,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var query = new SaveClinicalSettingQuery(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
+		var query = new SaveClinicalSettingQuery { Id = LongId<ClinicalSettingId>() };
 
 		v.Dispatcher.DispatchAsync(Arg.Any<CheckClinicalSettingBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
@@ -91,7 +91,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
 		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, Rnd.Lng, Rnd.Str);
+		var query = new SaveClinicalSettingQuery { UserId = userId, Id = clinicalSettingId };
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
@@ -130,10 +130,10 @@ public sealed class HandleAsync_Tests
 
 		// Assert
 		await v.Dispatcher.Received().DispatchAsync(
-			Arg.Is<UpdateClinicalSettingCommand>(c =>
-				c.Id == clinicalSettingId
-				&& c.Version == version
-				&& c.Description == description
+			Arg.Is<UpdateClinicalSettingCommand>(x =>
+				x.Id == clinicalSettingId
+				&& x.Version == version
+				&& x.Description == description
 			)
 		);
 	}
@@ -194,13 +194,13 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var ClinicalSettingId = LongId<ClinicalSettingId>();
+		var clinicalSettingId = LongId<ClinicalSettingId>();
 		var query = new SaveClinicalSettingQuery(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Dispatcher.DispatchAsync(Arg.Any<CreateClinicalSettingQuery>())
-			.Returns(ClinicalSettingId);
+			.Returns(clinicalSettingId);
 		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
 			.Returns(Create.None<ClinicalSettingEntity>());
 
@@ -210,6 +210,6 @@ public sealed class HandleAsync_Tests
 		// Assert
 		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateClinicalSettingQuery>());
 		var some = result.AssertSome();
-		Assert.Equal(ClinicalSettingId, some);
+		Assert.Equal(clinicalSettingId, some);
 	}
 }
