@@ -41,4 +41,9 @@ internal sealed record class CreateEntryQuery(
 		LearningPoints: query.LearningPoints
 	)
 	{ }
+
+	/// <summary>
+	/// Create empty for testing and model binding
+	/// </summary>
+	public CreateEntryQuery() : this(new(), DateTime.MinValue, new(), new(), 0, new(), new()) { }
 }

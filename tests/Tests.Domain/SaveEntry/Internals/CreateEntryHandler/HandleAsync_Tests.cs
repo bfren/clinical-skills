@@ -5,21 +5,22 @@ using ClinicalSkills.Persistence.Entities;
 using ClinicalSkills.Persistence.Repositories;
 using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
+using Jeebs.Cryptography.Functions;
 
-namespace ClinicalSkills.Domain.SaveClinicalSetting.Internals.CreateClinicalSettingHandler_Tests;
+namespace ClinicalSkills.Domain.SaveEntry.Internals.CreateEntryHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {
-	internal sealed class TestHandler : Abstracts.TestHandlerBase<IClinicalSettingRepository, ClinicalSettingEntity, ClinicalSettingId, CreateClinicalSettingHandler>
+	internal sealed class TestHandler : Abstracts.TestHandlerBase<IEntryRepository, EntryEntity, EntryId, CreateEntryHandler>
 	{
 		internal sealed class Setup : SetupBase<Vars>
 		{
-			internal override CreateClinicalSettingHandler GetHandler(Vars v) =>
+			internal override CreateEntryHandler GetHandler(Vars v) =>
 				new(v.Repo, v.Log);
 		}
 	}
 
-	private (CreateClinicalSettingHandler, TestHandler.Vars) GetVars() =>
+	private (CreateEntryHandler, TestHandler.Vars) GetVars() =>
 		new TestHandler.Setup().GetVars();
 
 	[Fact]
@@ -27,13 +28,13 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var query = new CreateClinicalSettingQuery(new(), Rnd.Str);
+		var query = new CreateEntryQuery();
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
-		v.Log.Received().Vrb("Creating Clinical Setting: {Query}", query);
+		v.Log.Received().Vrb("Creating Entry: {Query}", query);
 	}
 
 	[Fact]
@@ -42,16 +43,26 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var description = Rnd.Str;
-		var query = new CreateClinicalSettingQuery(userId, description);
+		var dateOccurred = Rnd.DateTime;
+		var clinicalSettingId = LongId<ClinicalSettingId>();
+		var trainingGradeId = LongId<TrainingGradeId>();
+		var patientAge = Rnd.Int;
+		var caseSummary = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var learningPoints = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var query = new CreateEntryQuery(userId, dateOccurred, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints);
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Repo.Received().CreateAsync(Arg.Is<ClinicalSettingEntity>(x =>
+		await v.Repo.Received().CreateAsync(Arg.Is<EntryEntity>(x =>
 			x.UserId == userId
-			&& x.Description == description
+			&& x.DateOccurred == dateOccurred
+			&& x.ClinicalSettingId == clinicalSettingId
+			&& x.TrainingGradeId == trainingGradeId
+			&& x.PatientAge == patientAge
+			&& x.CaseSummary == caseSummary
+			&& x.LearningPoints == learningPoints
 		));
 	}
 
@@ -60,10 +71,10 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var expected = LongId<ClinicalSettingId>();
+		var expected = LongId<EntryId>();
 		v.Repo.CreateAsync(default!)
 			.ReturnsForAnyArgs(expected);
-		var query = new CreateClinicalSettingQuery(new(), Rnd.Str);
+		var query = new CreateEntryQuery();
 
 		// Act
 		var result = await handler.HandleAsync(query);

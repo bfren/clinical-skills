@@ -48,4 +48,9 @@ internal sealed record class UpdateEntryCommand(
 		LastUpdated: DateTime.Now
 	)
 	{ }
+
+	/// <summary>
+	/// Create empty for testing and model binding
+	/// </summary>
+	public UpdateEntryCommand() : this(new(), 0L, DateTime.MinValue, new(), new(), 0, new(), new(), DateTime.MinValue) { }
 }

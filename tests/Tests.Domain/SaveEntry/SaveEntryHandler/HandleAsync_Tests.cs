@@ -1,29 +1,30 @@
 // Clinical Skills: Unit Tests
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using ClinicalSkills.Domain.SaveClinicalSetting.Internals;
-using ClinicalSkills.Domain.SaveClinicalSetting.Messages;
+using ClinicalSkills.Domain.SaveEntry.Internals;
+using ClinicalSkills.Domain.SaveEntry.Messages;
 using ClinicalSkills.Persistence.Entities;
 using ClinicalSkills.Persistence.Repositories;
 using ClinicalSkills.Persistence.StrongIds;
 using Jeebs.Auth.Data;
+using Jeebs.Cryptography.Functions;
 using Jeebs.Data.Enums;
 using Jeebs.Data.Testing.Query;
 
-namespace ClinicalSkills.Domain.SaveClinicalSetting.SaveClinicalSettingHandler_Tests;
+namespace ClinicalSkills.Domain.SaveEntry.SaveEntryHandler_Tests;
 
 public sealed class HandleAsync_Tests
 {
-	internal sealed class TestHandler : Abstracts.TestHandlerBase<IClinicalSettingRepository, ClinicalSettingEntity, ClinicalSettingId, SaveClinicalSettingHandler>
+	internal sealed class TestHandler : Abstracts.TestHandlerBase<IEntryRepository, EntryEntity, EntryId, SaveEntryHandler>
 	{
 		internal sealed class Setup : SetupBase<Vars>
 		{
-			internal override SaveClinicalSettingHandler GetHandler(Vars v) =>
+			internal override SaveEntryHandler GetHandler(Vars v) =>
 				new(v.Repo, v.Dispatcher, v.Log);
 		}
 	}
 
-	private (SaveClinicalSettingHandler, TestHandler.Vars) GetVars() =>
+	private (SaveEntryHandler, TestHandler.Vars) GetVars() =>
 		new TestHandler.Setup().GetVars();
 
 	[Fact]
@@ -31,57 +32,57 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var query = new SaveClinicalSettingQuery();
+		var query = new SaveEntryQuery();
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(new ClinicalSettingEntity());
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(new EntryEntity());
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
-		v.Log.Received().Vrb("Saving Clinical Setting {Query}.", query);
+		v.Log.Received().Vrb("Saving Entry {Query}.", query);
 	}
 
 	[Fact]
-	public async Task Checks_ClinicalSetting_Belongs_To_User_With_Correct_Values()
+	public async Task Checks_Entry_Belongs_To_User_With_Correct_Values()
 	{
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, Rnd.Lng, Rnd.Str);
+		var entryId = LongId<EntryId>();
+		var query = new SaveEntryQuery { UserId = userId, Id = entryId };
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(new ClinicalSettingEntity());
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(new EntryEntity());
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
 		await v.Dispatcher.Received().DispatchAsync(
-			Arg.Is<CheckClinicalSettingBelongsToUserQuery>(x => x.UserId == userId && x.ClinicalSettingId == clinicalSettingId)
+			Arg.Is<CheckEntryBelongsToUserQuery>(x => x.UserId == userId && x.EntryId == entryId)
 		);
 	}
 
 	[Fact]
-	public async Task ClinicalSetting_Does_Not_Belong_To_User__Returns_None_With_ClinicalSettingDoesNotBelongToUserMsg()
+	public async Task Entry_Does_Not_Belong_To_User__Returns_None_With_EntryDoesNotBelongToUserMsg()
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var query = new SaveClinicalSettingQuery(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
+		var query = new SaveEntryQuery { Id = LongId<EntryId>() };
 
-		v.Dispatcher.DispatchAsync(Arg.Any<CheckClinicalSettingBelongsToUserQuery>())
+		v.Dispatcher.DispatchAsync(Arg.Any<CheckEntryBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
 
 		// Act
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		result.AssertNone().AssertType<ClinicalSettingDoesNotBelongToUserMsg>();
+		result.AssertNone().AssertType<EntryDoesNotBelongToUserMsg>();
 	}
 
 	[Fact]
@@ -90,21 +91,21 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, Rnd.Lng, Rnd.Str);
+		var entryId = LongId<EntryId>();
+		var query = new SaveEntryQuery { UserId = userId, Id = entryId };
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(new ClinicalSettingEntity());
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(new EntryEntity());
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
 		v.Fluent.AssertCalls(
-			c => FluentQueryHelper.AssertWhere<ClinicalSettingEntity, ClinicalSettingId>(c, x => x.Id, Compare.Equal, clinicalSettingId),
-			c => FluentQueryHelper.AssertWhere<ClinicalSettingEntity, AuthUserId>(c, x => x.UserId, Compare.Equal, userId),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, EntryId>(c, x => x.Id, Compare.Equal, entryId),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, AuthUserId>(c, x => x.UserId, Compare.Equal, userId),
 			_ => { }
 		);
 	}
@@ -115,25 +116,35 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var clinicalSettingId = LongId<ClinicalSettingId>();
+		var entryId = LongId<EntryId>();
 		var version = Rnd.Lng;
-		var description = Rnd.Str;
-		var query = new SaveClinicalSettingQuery(userId, clinicalSettingId, version, description);
+		var dateOccurred = Rnd.DateTime;
+		var clinicalSettingId = LongId<ClinicalSettingId>();
+		var trainingGradeId = LongId<TrainingGradeId>();
+		var patientAge = Rnd.Int;
+		var caseSummary = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var learningPoints = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var query = new SaveEntryQuery(userId, entryId, version, dateOccurred, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints);
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(new ClinicalSettingEntity { Id = clinicalSettingId });
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(new EntryEntity { Id = entryId });
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
 		await v.Dispatcher.Received().DispatchAsync(
-			Arg.Is<UpdateClinicalSettingCommand>(c =>
-				c.Id == clinicalSettingId
-				&& c.Version == version
-				&& c.Description == description
+			Arg.Is<UpdateEntryCommand>(x =>
+				x.Id == entryId
+				&& x.Version == version
+				&& x.DateOccurred == dateOccurred
+				&& x.ClinicalSettingId == clinicalSettingId
+				&& x.TrainingGradeId == trainingGradeId
+				&& x.PatientAge == patientAge
+				&& x.CaseSummary == caseSummary
+				&& x.LearningPoints == learningPoints
 			)
 		);
 	}
@@ -143,24 +154,24 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
+		var entryId = LongId<EntryId>();
+		var query = new SaveEntryQuery();
 		var updated = Rnd.Flip;
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<UpdateClinicalSettingCommand>())
+		v.Dispatcher.DispatchAsync(Arg.Any<UpdateEntryCommand>())
 			.Returns(updated);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(new ClinicalSettingEntity { Id = clinicalSettingId });
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(new EntryEntity { Id = entryId });
 
 		// Act
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateClinicalSettingCommand>());
+		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateEntryCommand>());
 		var some = result.AssertSome();
-		Assert.Equal(clinicalSettingId, some);
+		Assert.Equal(entryId, some);
 	}
 
 	[Fact]
@@ -169,22 +180,32 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var description = Rnd.Str;
-		var query = new SaveClinicalSettingQuery(userId, null, 0L, description);
+		var dateOccurred = Rnd.DateTime;
+		var clinicalSettingId = LongId<ClinicalSettingId>();
+		var trainingGradeId = LongId<TrainingGradeId>();
+		var patientAge = Rnd.Int;
+		var caseSummary = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var learningPoints = CryptoF.Lock(Rnd.Str, Rnd.Str);
+		var query = new SaveEntryQuery(userId, null, 0L, dateOccurred, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints);
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(Create.None<ClinicalSettingEntity>());
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(Create.None<EntryEntity>());
 
 		// Act
 		var result = await handler.HandleAsync(query);
 
 		// Assert
 		await v.Dispatcher.Received().DispatchAsync(
-			Arg.Is<CreateClinicalSettingQuery>(c =>
-				c.UserId == userId
-				&& c.Description == description
+			Arg.Is<CreateEntryQuery>(x =>
+				x.UserId == userId
+				&& x.DateOccurred == dateOccurred
+				&& x.ClinicalSettingId == clinicalSettingId
+				&& x.TrainingGradeId == trainingGradeId
+				&& x.PatientAge == patientAge
+				&& x.CaseSummary == caseSummary
+				&& x.LearningPoints == learningPoints
 			)
 		);
 	}
@@ -194,22 +215,22 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var ClinicalSettingId = LongId<ClinicalSettingId>();
-		var query = new SaveClinicalSettingQuery(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
+		var entryId = LongId<EntryId>();
+		var query = new SaveEntryQuery();
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<CreateClinicalSettingQuery>())
-			.Returns(ClinicalSettingId);
-		v.Fluent.QuerySingleAsync<ClinicalSettingEntity>()
-			.Returns(Create.None<ClinicalSettingEntity>());
+		v.Dispatcher.DispatchAsync(Arg.Any<CreateEntryQuery>())
+			.Returns(entryId);
+		v.Fluent.QuerySingleAsync<EntryEntity>()
+			.Returns(Create.None<EntryEntity>());
 
 		// Act
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateClinicalSettingQuery>());
+		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateEntryQuery>());
 		var some = result.AssertSome();
-		Assert.Equal(ClinicalSettingId, some);
+		Assert.Equal(entryId, some);
 	}
 }
