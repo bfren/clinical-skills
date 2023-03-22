@@ -37,7 +37,7 @@ internal sealed class CreateTrainingGradeHandler : QueryHandler<CreateTrainingGr
 			.CreateAsync(new()
 			{
 				UserId = query.UserId,
-				Description = query.Description
+				Name = query.Name
 			});
 	}
 }

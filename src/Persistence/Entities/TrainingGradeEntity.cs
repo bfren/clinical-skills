@@ -28,7 +28,7 @@ public sealed record class TrainingGradeEntity : IWithVersion<TrainingGradeId>
 	public AuthUserId UserId { get; init; } = new();
 
 	/// <summary>
-	/// Training Grade description
+	/// Training Grade name
 	/// </summary>
-	public string Description { get; init; } = string.Empty;
+	public string Name { get; init; } = string.Empty;
 }

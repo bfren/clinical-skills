@@ -10,11 +10,11 @@ namespace Domain.SaveTrainingGrade.Internals;
 /// <inheritdoc cref="UpdateTrainingGradeHandler"/>
 /// <param name="Id">Training Grade ID</param>
 /// <param name="Version">Entity Version</param>
-/// <param name="Description">Description</param>
+/// <param name="Name">Name</param>
 internal sealed record class UpdateTrainingGradeCommand(
 	TrainingGradeId Id,
 	long Version,
-	string Description
+	string Name
 ) : Command, IWithVersion<TrainingGradeId>
 {
 	/// <summary>
@@ -25,7 +25,7 @@ internal sealed record class UpdateTrainingGradeCommand(
 	public UpdateTrainingGradeCommand(TrainingGradeId trainingGradeId, SaveTrainingGradeQuery query) : this(
 		Id: trainingGradeId,
 		Version: query.Version,
-		Description: query.Description
+		Name: query.Name
 	)
 	{ }
 }

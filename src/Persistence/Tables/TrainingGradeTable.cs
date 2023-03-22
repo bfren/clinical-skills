@@ -30,7 +30,7 @@ public sealed record class TrainingGradeTable() : Table(Constants.Schema, TableN
 	public string UserId =>
 		$"{TableName}_user_id";
 
-	/// <inheritdoc cref="Entities.TrainingGradeEntity.Description"/>
-	public string Description =>
-		$"{TableName}_description";
+	/// <inheritdoc cref="Entities.TrainingGradeEntity.Name"/>
+	public string Name =>
+		$"{TableName}_name";
 }

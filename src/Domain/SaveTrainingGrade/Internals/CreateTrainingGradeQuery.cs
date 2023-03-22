@@ -9,10 +9,10 @@ namespace Domain.SaveTrainingGrade.Internals;
 
 /// <inheritdoc cref="CreateTrainingGradeHandler"/>
 /// <param name="UserId">User ID</param>
-/// <param name="Description">Description</param>
+/// <param name="Name">Name</param>
 internal sealed record class CreateTrainingGradeQuery(
 	AuthUserId UserId,
-	string Description
+	string Name
 ) : Query<TrainingGradeId>, IWithUserId
 {
 	/// <summary>
@@ -21,7 +21,7 @@ internal sealed record class CreateTrainingGradeQuery(
 	/// <param name="query"></param>
 	public CreateTrainingGradeQuery(SaveTrainingGradeQuery query) : this(
 		UserId: query.UserId,
-		Description: query.Description
+		Name: query.Name
 	)
 	{ }
 }
