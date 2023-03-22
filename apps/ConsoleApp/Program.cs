@@ -56,7 +56,7 @@ static void Pause(string text = "PAUSE")
 Write("Migrations");
 log.Inf("Migrate to latest database version.");
 await dispatcher.DispatchAsync(
-	new D.MigrateToLatest.MigrateToLatestCommand()
+	new D.MigrateToLatestCommand()
 );
 
 // ==========================================
