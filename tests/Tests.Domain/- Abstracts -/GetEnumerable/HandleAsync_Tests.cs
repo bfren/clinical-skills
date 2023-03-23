@@ -193,13 +193,4 @@ public abstract class HandleAsync_Tests
 			}
 		}
 	}
-
-	internal abstract class Setup<TRepo, TEntity, TId, TQuery, THandler, TModel> : TestHandlerBase<TRepo, TEntity, TId, THandler>.SetupBase
-		where TRepo : class, IRepository<TEntity, TId>
-		where TEntity : IWithId<TId>
-		where TId : LongId, new()
-		where TQuery : Query<IEnumerable<TModel>>
-		where THandler : QueryHandler<TQuery, IEnumerable<TModel>>
-	{
-	}
 }
