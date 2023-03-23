@@ -1,5 +1,5 @@
-// Mileage Tracker
-// Copyright (c) bfren - licensed under https://mit.bfren.dev/2022
+// Clinical Skills
+// Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;

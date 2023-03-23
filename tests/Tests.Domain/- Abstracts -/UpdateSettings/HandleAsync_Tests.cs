@@ -2,7 +2,6 @@
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
 using Domain;
-using Domain.Commands.SaveUserSettings.Messages;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Persistence.Entities;
