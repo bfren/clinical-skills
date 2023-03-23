@@ -31,7 +31,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var query = new SaveSkillQuery();
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(new SkillEntity());
@@ -52,7 +52,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<SkillId>();
 		var query = new SaveSkillQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(new SkillEntity());
@@ -61,7 +61,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CheckSkillBelongsToUserQuery>(x => x.UserId == userId && x.SkillId == clinicalSettingId)
 		);
 	}
@@ -73,7 +73,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new SaveSkillQuery { Id = LongId<SkillId>() };
 
-		v.Dispatcher.DispatchAsync(Arg.Any<CheckSkillBelongsToUserQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CheckSkillBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
 
 		// Act
@@ -92,7 +92,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<SkillId>();
 		var query = new SaveSkillQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(new SkillEntity());
@@ -119,7 +119,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveSkillQuery(userId, clinicalSettingId, version, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(new SkillEntity { Id = clinicalSettingId });
@@ -128,7 +128,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<UpdateSkillCommand>(x =>
 				x.Id == clinicalSettingId
 				&& x.Version == version
@@ -146,9 +146,9 @@ public sealed class HandleAsync_Tests
 		var query = new SaveSkillQuery(LongId<AuthUserId>(), LongId<SkillId>(), Rnd.Lng, Rnd.Str);
 		var updated = Rnd.Flip;
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<UpdateSkillCommand>())
+		v.Dispatcher.SendAsync(Arg.Any<UpdateSkillCommand>())
 			.Returns(updated);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(new SkillEntity { Id = clinicalSettingId });
@@ -157,7 +157,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateSkillCommand>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<UpdateSkillCommand>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}
@@ -171,7 +171,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveSkillQuery(userId, null, 0L, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(Create.None<SkillEntity>());
@@ -180,7 +180,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CreateSkillQuery>(c =>
 				c.UserId == userId
 				&& c.Name == name
@@ -196,9 +196,9 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<SkillId>();
 		var query = new SaveSkillQuery(LongId<AuthUserId>(), LongId<SkillId>(), Rnd.Lng, Rnd.Str);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<CreateSkillQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CreateSkillQuery>())
 			.Returns(clinicalSettingId);
 		v.Fluent.QuerySingleAsync<SkillEntity>()
 			.Returns(Create.None<SkillEntity>());
@@ -207,7 +207,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateSkillQuery>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<CreateSkillQuery>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}

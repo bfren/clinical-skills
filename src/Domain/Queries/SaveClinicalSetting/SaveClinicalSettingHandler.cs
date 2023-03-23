@@ -43,7 +43,7 @@ internal sealed class SaveClinicalSettingHandler : QueryHandler<SaveClinicalSett
 		if (query.Id?.Value > 0)
 		{
 			var clinicalSettingBelongsToUser = await Dispatcher
-				.DispatchAsync(new CheckClinicalSettingBelongsToUserQuery(query.UserId, query.Id))
+				.SendAsync(new CheckClinicalSettingBelongsToUserQuery(query.UserId, query.Id))
 				.IsTrueAsync();
 
 			if (!clinicalSettingBelongsToUser)
@@ -60,10 +60,10 @@ internal sealed class SaveClinicalSettingHandler : QueryHandler<SaveClinicalSett
 			.QuerySingleAsync<ClinicalSettingEntity>()
 			.SwitchAsync(
 				some: x => Dispatcher
-					.DispatchAsync(new Internals.UpdateClinicalSettingCommand(x.Id, query))
+					.SendAsync(new Internals.UpdateClinicalSettingCommand(x.Id, query))
 					.BindAsync(_ => F.Some(x.Id)),
 				none: () => Dispatcher
-					.DispatchAsync(new Internals.CreateClinicalSettingQuery(query))
+					.SendAsync(new Internals.CreateClinicalSettingQuery(query))
 			);
 	}
 }

@@ -32,7 +32,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var query = new SaveEntryQuery();
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(new EntryEntity());
@@ -53,7 +53,7 @@ public sealed class HandleAsync_Tests
 		var entryId = LongId<EntryId>();
 		var query = new SaveEntryQuery { UserId = userId, Id = entryId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(new EntryEntity());
@@ -62,7 +62,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CheckEntryBelongsToUserQuery>(x => x.UserId == userId && x.EntryId == entryId)
 		);
 	}
@@ -74,7 +74,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new SaveEntryQuery { Id = LongId<EntryId>() };
 
-		v.Dispatcher.DispatchAsync(Arg.Any<CheckEntryBelongsToUserQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CheckEntryBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
 
 		// Act
@@ -93,7 +93,7 @@ public sealed class HandleAsync_Tests
 		var entryId = LongId<EntryId>();
 		var query = new SaveEntryQuery { UserId = userId, Id = entryId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(new EntryEntity());
@@ -125,7 +125,7 @@ public sealed class HandleAsync_Tests
 		var learningPoints = CryptoF.Lock(Rnd.Str, Rnd.Str);
 		var query = new SaveEntryQuery(userId, entryId, version, dateOccurred, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(new EntryEntity { Id = entryId });
@@ -134,7 +134,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<UpdateEntryCommand>(x =>
 				x.Id == entryId
 				&& x.Version == version
@@ -157,9 +157,9 @@ public sealed class HandleAsync_Tests
 		var query = new SaveEntryQuery();
 		var updated = Rnd.Flip;
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<UpdateEntryCommand>())
+		v.Dispatcher.SendAsync(Arg.Any<UpdateEntryCommand>())
 			.Returns(updated);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(new EntryEntity { Id = entryId });
@@ -168,7 +168,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateEntryCommand>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<UpdateEntryCommand>());
 		var some = result.AssertSome();
 		Assert.Equal(entryId, some);
 	}
@@ -187,7 +187,7 @@ public sealed class HandleAsync_Tests
 		var learningPoints = CryptoF.Lock(Rnd.Str, Rnd.Str);
 		var query = new SaveEntryQuery(userId, null, 0L, dateOccurred, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(Create.None<EntryEntity>());
@@ -196,7 +196,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CreateEntryQuery>(x =>
 				x.UserId == userId
 				&& x.DateOccurred == dateOccurred
@@ -217,9 +217,9 @@ public sealed class HandleAsync_Tests
 		var entryId = LongId<EntryId>();
 		var query = new SaveEntryQuery();
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<CreateEntryQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CreateEntryQuery>())
 			.Returns(entryId);
 		v.Fluent.QuerySingleAsync<EntryEntity>()
 			.Returns(Create.None<EntryEntity>());
@@ -228,7 +228,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateEntryQuery>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<CreateEntryQuery>());
 		var some = result.AssertSome();
 		Assert.Equal(entryId, some);
 	}

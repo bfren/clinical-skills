@@ -31,7 +31,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var query = new SaveThemeQuery();
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(new ThemeEntity());
@@ -52,7 +52,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<ThemeId>();
 		var query = new SaveThemeQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(new ThemeEntity());
@@ -61,7 +61,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CheckThemeBelongsToUserQuery>(x => x.UserId == userId && x.ThemeId == clinicalSettingId)
 		);
 	}
@@ -73,7 +73,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new SaveThemeQuery { Id = LongId<ThemeId>() };
 
-		v.Dispatcher.DispatchAsync(Arg.Any<CheckThemeBelongsToUserQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CheckThemeBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
 
 		// Act
@@ -92,7 +92,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<ThemeId>();
 		var query = new SaveThemeQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(new ThemeEntity());
@@ -119,7 +119,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveThemeQuery(userId, clinicalSettingId, version, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(new ThemeEntity { Id = clinicalSettingId });
@@ -128,7 +128,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<UpdateThemeCommand>(x =>
 				x.Id == clinicalSettingId
 				&& x.Version == version
@@ -146,9 +146,9 @@ public sealed class HandleAsync_Tests
 		var query = new SaveThemeQuery(LongId<AuthUserId>(), LongId<ThemeId>(), Rnd.Lng, Rnd.Str);
 		var updated = Rnd.Flip;
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<UpdateThemeCommand>())
+		v.Dispatcher.SendAsync(Arg.Any<UpdateThemeCommand>())
 			.Returns(updated);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(new ThemeEntity { Id = clinicalSettingId });
@@ -157,7 +157,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateThemeCommand>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<UpdateThemeCommand>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}
@@ -171,7 +171,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveThemeQuery(userId, null, 0L, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(Create.None<ThemeEntity>());
@@ -180,7 +180,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CreateThemeQuery>(c =>
 				c.UserId == userId
 				&& c.Name == name
@@ -196,9 +196,9 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<ThemeId>();
 		var query = new SaveThemeQuery(LongId<AuthUserId>(), LongId<ThemeId>(), Rnd.Lng, Rnd.Str);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<CreateThemeQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CreateThemeQuery>())
 			.Returns(clinicalSettingId);
 		v.Fluent.QuerySingleAsync<ThemeEntity>()
 			.Returns(Create.None<ThemeEntity>());
@@ -207,7 +207,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateThemeQuery>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<CreateThemeQuery>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}

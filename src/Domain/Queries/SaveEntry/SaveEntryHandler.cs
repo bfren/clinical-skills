@@ -43,7 +43,7 @@ internal sealed class SaveEntryHandler : QueryHandler<SaveEntryQuery, EntryId>
 		if (query.Id?.Value > 0)
 		{
 			var entryBelongsToUser = await Dispatcher
-				.DispatchAsync(new CheckEntryBelongsToUserQuery(query.UserId, query.Id))
+				.SendAsync(new CheckEntryBelongsToUserQuery(query.UserId, query.Id))
 				.IsTrueAsync();
 
 			if (!entryBelongsToUser)
@@ -60,10 +60,10 @@ internal sealed class SaveEntryHandler : QueryHandler<SaveEntryQuery, EntryId>
 			.QuerySingleAsync<EntryEntity>()
 			.SwitchAsync(
 				some: x => Dispatcher
-					.DispatchAsync(new Internals.UpdateEntryCommand(x.Id, query))
+					.SendAsync(new Internals.UpdateEntryCommand(x.Id, query))
 					.BindAsync(_ => F.Some(x.Id)),
 				none: () => Dispatcher
-					.DispatchAsync(new Internals.CreateEntryQuery(query))
+					.SendAsync(new Internals.CreateEntryQuery(query))
 			);
 	}
 }

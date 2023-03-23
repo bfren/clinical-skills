@@ -48,7 +48,7 @@ public sealed class HandleAsync_Tests
 		var userId = LongId<AuthUserId>();
 		var query = new GetRecentEntriesQuery(userId);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.ExecuteAsync(Arg.Any<Expression<Func<EntryEntity, int?>>>())
 			.Returns(Create.None<int?>());
@@ -73,7 +73,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new GetRecentEntriesQuery(LongId<AuthUserId>());
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.ExecuteAsync(Arg.Any<Expression<Func<EntryEntity, int?>>>())
 			.Returns(Create.None<int?>());
@@ -98,7 +98,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new GetRecentEntriesQuery(LongId<AuthUserId>());
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.ExecuteAsync(Arg.Any<Expression<Func<EntryEntity, int?>>>())
 			.Returns(Create.None<int?>());

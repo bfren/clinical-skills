@@ -80,7 +80,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new GetEntriesQuery(LongId<AuthUserId>());
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.ExecuteAsync(Arg.Any<Expression<Func<EntryEntity, int?>>>())
 			.Returns(Create.None<int?>());

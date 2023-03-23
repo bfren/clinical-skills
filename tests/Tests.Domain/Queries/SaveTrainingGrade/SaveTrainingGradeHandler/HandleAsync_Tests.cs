@@ -31,7 +31,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var query = new SaveTrainingGradeQuery();
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(new TrainingGradeEntity());
@@ -52,7 +52,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<TrainingGradeId>();
 		var query = new SaveTrainingGradeQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(new TrainingGradeEntity());
@@ -61,7 +61,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CheckTrainingGradeBelongsToUserQuery>(x => x.UserId == userId && x.TrainingGradeId == clinicalSettingId)
 		);
 	}
@@ -73,7 +73,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var query = new SaveTrainingGradeQuery { Id = LongId<TrainingGradeId>() };
 
-		v.Dispatcher.DispatchAsync(Arg.Any<CheckTrainingGradeBelongsToUserQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CheckTrainingGradeBelongsToUserQuery>())
 			.ReturnsForAnyArgs(false);
 
 		// Act
@@ -92,7 +92,7 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<TrainingGradeId>();
 		var query = new SaveTrainingGradeQuery { UserId = userId, Id = clinicalSettingId };
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(new TrainingGradeEntity());
@@ -119,7 +119,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveTrainingGradeQuery(userId, clinicalSettingId, version, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(new TrainingGradeEntity { Id = clinicalSettingId });
@@ -128,7 +128,7 @@ public sealed class HandleAsync_Tests
 		await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<UpdateTrainingGradeCommand>(x =>
 				x.Id == clinicalSettingId
 				&& x.Version == version
@@ -146,9 +146,9 @@ public sealed class HandleAsync_Tests
 		var query = new SaveTrainingGradeQuery(LongId<AuthUserId>(), LongId<TrainingGradeId>(), Rnd.Lng, Rnd.Str);
 		var updated = Rnd.Flip;
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<UpdateTrainingGradeCommand>())
+		v.Dispatcher.SendAsync(Arg.Any<UpdateTrainingGradeCommand>())
 			.Returns(updated);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(new TrainingGradeEntity { Id = clinicalSettingId });
@@ -157,7 +157,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<UpdateTrainingGradeCommand>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<UpdateTrainingGradeCommand>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}
@@ -171,7 +171,7 @@ public sealed class HandleAsync_Tests
 		var name = Rnd.Str;
 		var query = new SaveTrainingGradeQuery(userId, null, 0L, name);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(Create.None<TrainingGradeEntity>());
@@ -180,7 +180,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(
+		await v.Dispatcher.Received().SendAsync(
 			Arg.Is<CreateTrainingGradeQuery>(c =>
 				c.UserId == userId
 				&& c.Name == name
@@ -196,9 +196,9 @@ public sealed class HandleAsync_Tests
 		var clinicalSettingId = LongId<TrainingGradeId>();
 		var query = new SaveTrainingGradeQuery(LongId<AuthUserId>(), LongId<TrainingGradeId>(), Rnd.Lng, Rnd.Str);
 
-		v.Dispatcher.DispatchAsync<bool>(default!)
+		v.Dispatcher.SendAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
-		v.Dispatcher.DispatchAsync(Arg.Any<CreateTrainingGradeQuery>())
+		v.Dispatcher.SendAsync(Arg.Any<CreateTrainingGradeQuery>())
 			.Returns(clinicalSettingId);
 		v.Fluent.QuerySingleAsync<TrainingGradeEntity>()
 			.Returns(Create.None<TrainingGradeEntity>());
@@ -207,7 +207,7 @@ public sealed class HandleAsync_Tests
 		var result = await handler.HandleAsync(query);
 
 		// Assert
-		await v.Dispatcher.Received().DispatchAsync(Arg.Any<CreateTrainingGradeQuery>());
+		await v.Dispatcher.Received().SendAsync(Arg.Any<CreateTrainingGradeQuery>());
 		var some = result.AssertSome();
 		Assert.Equal(clinicalSettingId, some);
 	}

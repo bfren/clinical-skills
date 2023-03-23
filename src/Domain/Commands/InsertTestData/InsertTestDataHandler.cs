@@ -41,12 +41,12 @@ internal sealed class InsertTestDataHandler : CommandHandler<InsertTestDataComma
 	{
 		Log.Inf("Inserting test data.");
 		var pwd = "fred";
-		var q = from u0 in Dispatcher.DispatchAsync(new CreateUserQuery("bf", "info@bfren.dev", pwd))
-				from ec0 in Dispatcher.DispatchAsync(new GetUserEncryptionKeyQuery(u0, pwd))
-				from cs0 in Dispatcher.DispatchAsync(new CreateClinicalSettingQuery(u0, "ED"))
-				from cs1 in Dispatcher.DispatchAsync(new CreateClinicalSettingQuery(u0, "MAU"))
-				from tg0 in Dispatcher.DispatchAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
-				from tg1 in Dispatcher.DispatchAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
+		var q = from u0 in Dispatcher.SendAsync(new CreateUserQuery("bf", "info@bfren.dev", pwd))
+				from ec0 in Dispatcher.SendAsync(new GetUserEncryptionKeyQuery(u0, pwd))
+				from cs0 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(u0, "ED"))
+				from cs1 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(u0, "MAU"))
+				from tg0 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
+				from tg1 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
 				from _ in insertEntries(u0, cs0, cs1, tg0, tg1, ec0)
 				select true;
 
@@ -73,7 +73,7 @@ internal sealed class InsertTestDataHandler : CommandHandler<InsertTestDataComma
 				var learningPoints = CryptoF.Lock(Rnd.Str, encryptionKey);
 
 				_ = await Dispatcher
-					.DispatchAsync(new CreateEntryQuery(userId, Rnd.DateTime, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints))
+					.SendAsync(new CreateEntryQuery(userId, Rnd.DateTime, clinicalSettingId, trainingGradeId, patientAge, caseSummary, learningPoints))
 					.IfSomeAsync(entryIds.Add);
 			}
 

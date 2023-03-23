@@ -43,7 +43,7 @@ internal sealed class SaveThemeHandler : QueryHandler<SaveThemeQuery, ThemeId>
 		if (query.Id?.Value > 0)
 		{
 			var themeBelongsToUser = await Dispatcher
-				.DispatchAsync(new CheckThemeBelongsToUserQuery(query.UserId, query.Id))
+				.SendAsync(new CheckThemeBelongsToUserQuery(query.UserId, query.Id))
 				.IsTrueAsync();
 
 			if (!themeBelongsToUser)
@@ -60,10 +60,10 @@ internal sealed class SaveThemeHandler : QueryHandler<SaveThemeQuery, ThemeId>
 			.QuerySingleAsync<ThemeEntity>()
 			.SwitchAsync(
 				some: x => Dispatcher
-					.DispatchAsync(new Internals.UpdateThemeCommand(x.Id, query))
+					.SendAsync(new Internals.UpdateThemeCommand(x.Id, query))
 					.BindAsync(_ => F.Some(x.Id)),
 				none: () => Dispatcher
-					.DispatchAsync(new Internals.CreateThemeQuery(query))
+					.SendAsync(new Internals.CreateThemeQuery(query))
 			);
 	}
 }

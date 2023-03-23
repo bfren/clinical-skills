@@ -43,7 +43,7 @@ internal sealed class SaveSkillHandler : QueryHandler<SaveSkillQuery, SkillId>
 		if (query.Id?.Value > 0)
 		{
 			var skillBelongsToUser = await Dispatcher
-				.DispatchAsync(new CheckSkillBelongsToUserQuery(query.UserId, query.Id))
+				.SendAsync(new CheckSkillBelongsToUserQuery(query.UserId, query.Id))
 				.IsTrueAsync();
 
 			if (!skillBelongsToUser)
@@ -60,10 +60,10 @@ internal sealed class SaveSkillHandler : QueryHandler<SaveSkillQuery, SkillId>
 			.QuerySingleAsync<SkillEntity>()
 			.SwitchAsync(
 				some: x => Dispatcher
-					.DispatchAsync(new Internals.UpdateSkillCommand(x.Id, query))
+					.SendAsync(new Internals.UpdateSkillCommand(x.Id, query))
 					.BindAsync(_ => F.Some(x.Id)),
 				none: () => Dispatcher
-					.DispatchAsync(new Internals.CreateSkillQuery(query))
+					.SendAsync(new Internals.CreateSkillQuery(query))
 			);
 	}
 }
