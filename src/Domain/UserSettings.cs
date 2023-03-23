@@ -8,12 +8,10 @@ namespace Domain;
 /// <summary>
 /// Represents a user's settings
 /// </summary>
-/// <param name="Id">User Settings ID</param>
 /// <param name="Version">Version (for concurrency)</param>
 /// <param name="DefaultClinicalSettingId">Default Clinical Setting ID</param>
 /// <param name="DefaultTrainingGradeId">Default Training Grade ID</param>
 public sealed record class UserSettings(
-	UserSettingsId Id,
 	long Version,
 	ClinicalSettingId? DefaultClinicalSettingId,
 	TrainingGradeId? DefaultTrainingGradeId
@@ -22,5 +20,5 @@ public sealed record class UserSettings(
 	/// <summary>
 	/// Create default settings object
 	/// </summary>
-	public UserSettings() : this(new(), 0L, null, null) { }
+	public UserSettings() : this(0L, null, null) { }
 }

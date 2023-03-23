@@ -48,7 +48,7 @@ public sealed class HandleAsync_Tests
 		var userId = LongId<AuthUserId>();
 		var clinicalSettingId = LongId<ClinicalSettingId>();
 		var trainingGradeId = LongId<TrainingGradeId>();
-		var command = new CreateUserSettingsCommand(userId, new(new(), 0L, clinicalSettingId, trainingGradeId));
+		var command = new CreateUserSettingsCommand(userId, new(0L, clinicalSettingId, trainingGradeId));
 		v.Repo.CreateAsync(default!)
 			.ReturnsForAnyArgs(LongId<UserSettingsId>());
 

@@ -33,7 +33,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
 		var clinicalSettingId = LongId<ClinicalSettingId>();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, clinicalSettingId, null);
+		var settings = new UserSettings(Rnd.Lng, clinicalSettingId, null);
 		var query = new SaveUserSettingsCommand(userId, settings);
 
 		v.Dispatcher.SendAsync<bool>(default!)
@@ -57,7 +57,7 @@ public sealed class HandleAsync_Tests
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
 		var trainingGradeId = LongId<TrainingGradeId>();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, trainingGradeId);
+		var settings = new UserSettings(Rnd.Lng, null, trainingGradeId);
 		var query = new SaveUserSettingsCommand(userId, settings);
 
 		v.Dispatcher.SendAsync<bool>(default!)
@@ -79,7 +79,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, LongId<ClinicalSettingId>(), null);
+		var settings = new UserSettings(Rnd.Lng, LongId<ClinicalSettingId>(), null);
 		var query = new SaveUserSettingsCommand(LongId<AuthUserId>(), settings);
 
 		v.Dispatcher.SendAsync(Arg.Any<CheckClinicalSettingBelongsToUserQuery>())
@@ -98,7 +98,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, LongId<TrainingGradeId>());
+		var settings = new UserSettings(Rnd.Lng, null, LongId<TrainingGradeId>());
 		var query = new SaveUserSettingsCommand(LongId<AuthUserId>(), settings);
 
 		v.Dispatcher.SendAsync(Arg.Any<CheckTrainingGradeBelongsToUserQuery>())
@@ -118,7 +118,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, null);
+		var settings = new UserSettings(Rnd.Lng, null, null);
 		var query = new SaveUserSettingsCommand(userId, settings);
 
 		v.Dispatcher.SendAsync<bool>(default!)
@@ -141,7 +141,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, null);
+		var settings = new UserSettings(Rnd.Lng, null, null);
 		var existingSettings = new UserSettingsEntity();
 		var query = new SaveUserSettingsCommand(LongId<AuthUserId>(), settings);
 
@@ -166,7 +166,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, null);
+		var settings = new UserSettings(Rnd.Lng, null, null);
 		var query = new SaveUserSettingsCommand(LongId<AuthUserId>(), settings);
 		var updated = Rnd.Flip;
 
@@ -192,7 +192,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, null);
+		var settings = new UserSettings(Rnd.Lng, null, null);
 		var query = new SaveUserSettingsCommand(userId, settings);
 
 		v.Dispatcher.SendAsync<bool>(default!)
@@ -216,7 +216,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var settings = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, null, null);
+		var settings = new UserSettings(Rnd.Lng, null, null);
 		var query = new SaveUserSettingsCommand(LongId<AuthUserId>(), settings);
 		var updated = Rnd.Flip;
 

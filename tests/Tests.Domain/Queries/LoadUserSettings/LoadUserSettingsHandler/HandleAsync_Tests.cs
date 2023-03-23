@@ -30,7 +30,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		v.Fluent.QuerySingleAsync<UserSettings>()
-			.Returns(new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>()));
+			.Returns(new UserSettings(Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>()));
 		var query = new LoadUserSettingsQuery(LongId<AuthUserId>());
 
 		// Act
@@ -46,7 +46,7 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		v.Fluent.QuerySingleAsync<UserSettings>()
-			.Returns(new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>()));
+			.Returns(new UserSettings(Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>()));
 		var userId = LongId<AuthUserId>();
 		var query = new LoadUserSettingsQuery(userId);
 
@@ -65,7 +65,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var model = new UserSettings(LongId<UserSettingsId>(), Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>());
+		var model = new UserSettings(Rnd.Lng, LongId<ClinicalSettingId>(), LongId<TrainingGradeId>());
 		v.Fluent.QuerySingleAsync<UserSettings>()
 			.Returns(model);
 		var query = new LoadUserSettingsQuery(LongId<AuthUserId>());
