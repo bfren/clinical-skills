@@ -30,7 +30,7 @@ public sealed class HandleAsync_Tests : Abstracts.GetSingle.HandleAsync_Tests
 			}
 
 			internal override ClinicalSettingModel NewModel { get; } =
-				new(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str);
+				new(LongId<AuthUserId>(), LongId<ClinicalSettingId>(), Rnd.Lng, Rnd.Str, Rnd.Flip);
 		}
 	}
 
