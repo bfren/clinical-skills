@@ -41,13 +41,14 @@ internal sealed class InsertTestDataHandler : CommandHandler<InsertTestDataComma
 	{
 		Log.Inf("Inserting test data.");
 		var pwd = "fred";
-		var q = from u0 in Dispatcher.SendAsync(new CreateUserQuery("bf", "info@bfren.dev", pwd))
-				from ec0 in Dispatcher.SendAsync(new GetUserEncryptionKeyQuery(u0, pwd))
-				from cs0 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(u0, "ED"))
-				from cs1 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(u0, "MAU"))
-				from tg0 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
-				from tg1 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(u0, Rnd.Str))
-				from _ in insertEntries(u0, cs0, cs1, tg0, tg1, ec0)
+		var q = from usr in Dispatcher.SendAsync(new CreateUserQuery("bf", "info@bfren.dev", pwd))
+				from ec0 in Dispatcher.SendAsync(new GetUserEncryptionKeyQuery(usr, pwd))
+				from cs0 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(usr, "ED"))
+				from cs1 in Dispatcher.SendAsync(new CreateClinicalSettingQuery(usr, "MAU"))
+				from tg0 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(usr, Rnd.Str))
+				from tg1 in Dispatcher.SendAsync(new CreateTrainingGradeQuery(usr, Rnd.Str))
+				from us0 in Dispatcher.SendAsync(new SaveUserSettingsCommand(usr, new(0L, Rnd.Flip ? cs0 : cs1, Rnd.Flip ? tg0 : tg1)))
+				from ent in insertEntries(usr, cs0, cs1, tg0, tg1, ec0)
 				select true;
 
 		return await q.AuditAsync(
