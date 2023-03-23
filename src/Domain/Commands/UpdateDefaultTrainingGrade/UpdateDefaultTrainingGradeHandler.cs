@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Persistence.Repositories;
+using Sodium.Exceptions;
 
 namespace Domain.Commands.UpdateDefaultTrainingGrade;
 
@@ -34,11 +35,17 @@ internal sealed class UpdateDefaultTrainingGradeHandler : CommandHandler<UpdateD
 	/// <param name="command"></param>
 	public override async Task<Maybe<bool>> HandleAsync(UpdateDefaultTrainingGradeCommand command)
 	{
+		if (command.DefaultTrainingGradeId?.Value == 0)
+		{
+			command = command with { DefaultTrainingGradeId = null };
+		}
+
 		if (command.DefaultTrainingGradeId is not null)
 		{
 			var check = await Dispatcher.SendAsync(
 				new Queries.CheckTrainingGradeBelongsToUserQuery(command.UserId, command.DefaultTrainingGradeId)
 			);
+
 			if (!check.IsSome(out var value) || !value)
 			{
 				return F.None<bool, Messages.SaveSettingsCheckFailedMsg>();

@@ -34,11 +34,17 @@ internal sealed class UpdateDefaultClinicalSettingHandler : CommandHandler<Updat
 	/// <param name="command"></param>
 	public override async Task<Maybe<bool>> HandleAsync(UpdateDefaultClinicalSettingCommand command)
 	{
+		if (command.DefaultClinicalSettingId?.Value == 0)
+		{
+			command = command with { DefaultClinicalSettingId = null };
+		}
+
 		if (command.DefaultClinicalSettingId is not null)
 		{
 			var check = await Dispatcher.SendAsync(
 				new Queries.CheckClinicalSettingBelongsToUserQuery(command.UserId, command.DefaultClinicalSettingId)
 			);
+
 			if (check.IsNone(out var _) || (check.IsSome(out var value) && !value))
 			{
 				return F.None<bool, Messages.SaveSettingsCheckFailedMsg>();
