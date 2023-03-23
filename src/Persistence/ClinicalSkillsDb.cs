@@ -56,6 +56,11 @@ public sealed class ClinicalSkillsDb : Db
 	public UserEncryptionTable UserEncryption { get; init; } = new();
 
 	/// <summary>
+	/// User Settings table
+	/// </summary>
+	public UserSettingsTable UserSettings { get; init; } = new();
+
+	/// <summary>
 	/// Inject dependencies and map entities
 	/// </summary>
 	/// <param name="client"></param>
@@ -73,6 +78,7 @@ public sealed class ClinicalSkillsDb : Db
 		_ = Map<ThemeEntity>.To(Theme);
 		_ = Map<TrainingGradeEntity>.To(TrainingGrade);
 		_ = Map<UserEncryptionEntity>.To(UserEncryption);
+		_ = Map<UserSettingsEntity>.To(UserSettings);
 
 		// Add type handlers
 		client.Types.AddLockedTypeHandlers();

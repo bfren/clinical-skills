@@ -22,14 +22,16 @@ public static class ServiceCollectionExtensions
 		_ = services.AddSingleton<IDb, ClinicalSkillsDb>();
 
 		// Add repositories
-		_ = services.AddTransient<IClinicalSettingRepository, ClinicalSettingRepository>();
-		_ = services.AddTransient<IEntryRepository, EntryRepository>();
-		_ = services.AddTransient<IEntrySkillRepository, EntrySkillRepository>();
-		_ = services.AddTransient<IEntryThemeRepository, EntryThemeRepository>();
-		_ = services.AddTransient<ISkillRepository, SkillRepository>();
-		_ = services.AddTransient<IThemeRepository, ThemeRepository>();
-		_ = services.AddTransient<ITrainingGradeRepository, TrainingGradeRepository>();
-		_ = services.AddTransient<IUserEncryptionRepository, UserEncryptionRepository>();
+		_ = services
+			.AddTransient<IClinicalSettingRepository, ClinicalSettingRepository>()
+			.AddTransient<IEntryRepository, EntryRepository>()
+			.AddTransient<IEntrySkillRepository, EntrySkillRepository>()
+			.AddTransient<IEntryThemeRepository, EntryThemeRepository>()
+			.AddTransient<IUserSettingsRepository, UserSettingsRepository>()
+			.AddTransient<ISkillRepository, SkillRepository>()
+			.AddTransient<IThemeRepository, ThemeRepository>()
+			.AddTransient<ITrainingGradeRepository, TrainingGradeRepository>()
+			.AddTransient<IUserEncryptionRepository, UserEncryptionRepository>();
 
 		// Return
 		return services;
