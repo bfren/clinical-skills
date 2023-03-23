@@ -23,7 +23,7 @@ public sealed class HandleAsync_Tests : Abstracts.GetEnumerable.HandleAsync_Test
 			internal override (GetClinicalSettingsQuery, AuthUserId) GetQuery(AuthUserId? userId = null)
 			{
 				userId ??= LongId<AuthUserId>();
-				return (new(userId), userId);
+				return (new(userId, Rnd.Flip), userId);
 			}
 
 			internal override ClinicalSettingsModel NewModel { get; } =
@@ -46,7 +46,7 @@ public sealed class HandleAsync_Tests : Abstracts.GetEnumerable.HandleAsync_Test
 	[Fact]
 	public override async Task Test02_Calls_FluentQuery_Where__With_Correct_Values()
 	{
-		await new TestHandler.Setup().Test02_WithIsDisabled((u, d) => new(u), (h, q) => h.HandleAsync(q));
+		await new TestHandler.Setup().Test02_WithIsDisabled((u, d) => new(u, d), (h, q) => h.HandleAsync(q));
 	}
 
 	[Fact]

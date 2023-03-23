@@ -109,6 +109,7 @@ public abstract class HandleAsync_Tests
 				// Assert
 				v.Fluent.AssertCalls(
 					c => FluentQueryHelper.AssertWhere<TEntity, AuthUserId>(c, "UserId", Compare.Equal, userId),
+					c => FluentQueryHelper.AssertWhereIn<TEntity, bool>(c, "IsDisabled", disabledMatch),
 					_ => { },
 					_ => { }
 				);
@@ -150,6 +151,7 @@ public abstract class HandleAsync_Tests
 
 				// Assert
 				v.Fluent.AssertCalls(
+					_ => { },
 					_ => { },
 					c => FluentQueryHelper.AssertSort(c, sortBy, sortOrder),
 					_ => { }

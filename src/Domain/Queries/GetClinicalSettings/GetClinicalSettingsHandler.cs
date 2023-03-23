@@ -42,6 +42,7 @@ internal sealed class GetClinicalSettingsHandler : QueryHandler<GetClinicalSetti
 		return ClinicalSetting
 			.StartFluentQuery()
 			.Where(x => x.UserId, Compare.Equal, query.UserId)
+			.WhereIn(x => x.IsDisabled, query.IncludeDisabled ? new[] { true, false } : new[] { false })
 			.Sort(x => x.Name, SortOrder.Ascending)
 			.QueryAsync<ClinicalSettingsModel>();
 	}

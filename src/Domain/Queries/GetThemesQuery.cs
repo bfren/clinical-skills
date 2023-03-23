@@ -10,6 +10,8 @@ namespace Domain.Queries;
 
 /// <inheritdoc cref="GetThemesHandler"/>
 /// <param name="UserId"></param>
+/// <param name="IncludeDisabled">If true, disabled themes will be included</param>
 public sealed record class GetThemesQuery(
-	AuthUserId UserId
+	AuthUserId UserId,
+	bool IncludeDisabled
 ) : Query<IEnumerable<ThemesModel>>;

@@ -10,6 +10,8 @@ namespace Domain.Queries;
 
 /// <inheritdoc cref="GetSkillsHandler"/>
 /// <param name="UserId"></param>
+/// <param name="IncludeDisabled">If true, disabled skills will be included</param>
 public sealed record class GetSkillsQuery(
-	AuthUserId UserId
+	AuthUserId UserId,
+	bool IncludeDisabled
 ) : Query<IEnumerable<SkillsModel>>;
