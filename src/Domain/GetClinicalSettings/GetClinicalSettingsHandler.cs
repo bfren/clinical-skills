@@ -28,7 +28,7 @@ internal sealed class GetClinicalSettingsHandler : QueryHandler<GetClinicalSetti
 		(ClinicalSetting, Log) = (clinicalSetting, log);
 
 	/// <summary>
-	/// Get clinical settings for the specified user, sorted by description
+	/// Get clinical settings for the specified user, sorted by name
 	/// </summary>
 	/// <param name="query"></param>
 	public override Task<Maybe<IEnumerable<ClinicalSettingsModel>>> HandleAsync(GetClinicalSettingsQuery query)
