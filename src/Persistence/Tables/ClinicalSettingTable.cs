@@ -33,4 +33,8 @@ public sealed record class ClinicalSettingTable() : Table(Constants.Schema, Tabl
 	/// <inheritdoc cref="Entities.ClinicalSettingEntity.Name"/>
 	public string Name =>
 		$"{TableName}_name";
+
+	/// <inheritdoc cref="Entities.ClinicalSettingEntity.IsDisabled"/>
+	public string IsDisabled =>
+		$"{TableName}_is_disabled";
 }

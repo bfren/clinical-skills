@@ -33,4 +33,8 @@ public sealed record class SkillTable() : Table(Constants.Schema, TableName)
 	/// <inheritdoc cref="Entities.SkillEntity.Name"/>
 	public string Name =>
 		$"{TableName}_name";
+
+	/// <inheritdoc cref="Entities.SkillEntity.IsDisabled"/>
+	public string IsDisabled =>
+		$"{TableName}_is_disabled";
 }

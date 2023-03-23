@@ -23,6 +23,7 @@ public sealed class AddSkillTable : Migration
 			{Col(x => x.Version)} integer NOT NULL DEFAULT 0,
 			{Col(x => x.UserId)} integer NOT NULL,
 			{Col(x => x.Name)} text COLLATE pg_catalog."en-GB-x-icu" NOT NULL,
+			{Col(x => x.IsDisabled)} boolean NOT NULL DEFAULT false,
 			CONSTRAINT {Col(x => x.Id)}_key PRIMARY KEY({Col(x => x.Id)})
 		)
 		TABLESPACE pg_default

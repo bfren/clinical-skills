@@ -17,7 +17,7 @@ public sealed class AddUserSettingsTable : Migration
 	/// 1: Up
 	/// </summary>
 	protected override void Up() => Execute($"""
-		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{EntryThemeTable.TableName}
+		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{UserSettingsTable.TableName}
 		(
 			{Col(x => x.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
 			{Col(x => x.Version)} integer NOT NULL DEFAULT 0,
@@ -34,7 +34,7 @@ public sealed class AddUserSettingsTable : Migration
 	/// 1: Down
 	/// </summary>
 	protected override void Down() => Execute($"""
-		DROP TABLE IF EXISTS {Constants.Schema}.{EntryThemeTable.TableName}
+		DROP TABLE IF EXISTS {Constants.Schema}.{UserSettingsTable.TableName}
 		;
 		""");
 }

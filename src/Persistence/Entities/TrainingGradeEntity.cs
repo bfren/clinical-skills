@@ -31,4 +31,9 @@ public sealed record class TrainingGradeEntity : IWithVersion<TrainingGradeId>
 	/// Training Grade name
 	/// </summary>
 	public string Name { get; init; } = string.Empty;
+
+	/// <summary>
+	/// Whether or not this training grade has been disabled
+	/// </summary>
+	public bool IsDisabled { get; init; }
 }

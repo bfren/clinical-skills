@@ -31,4 +31,9 @@ public sealed record class ClinicalSettingEntity : IWithVersion<ClinicalSettingI
 	/// Clinical Setting name
 	/// </summary>
 	public string Name { get; init; } = string.Empty;
+
+	/// <summary>
+	/// Whether or not this clinical setting has been disabled
+	/// </summary>
+	public bool IsDisabled { get; init; }
 }

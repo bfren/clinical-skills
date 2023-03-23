@@ -33,4 +33,8 @@ public sealed record class ThemeTable() : Table(Constants.Schema, TableName)
 	/// <inheritdoc cref="Entities.ThemeEntity.Name"/>
 	public string Name =>
 		$"{TableName}_name";
+
+	/// <inheritdoc cref="Entities.ThemeEntity.IsDisabled"/>
+	public string IsDisabled =>
+		$"{TableName}_is_disabled";
 }

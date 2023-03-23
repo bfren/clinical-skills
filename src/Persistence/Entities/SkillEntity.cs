@@ -31,4 +31,9 @@ public sealed record class SkillEntity : IWithVersion<SkillId>
 	/// Skill name
 	/// </summary>
 	public string Name { get; init; } = string.Empty;
+
+	/// <summary>
+	/// Whether or not this skill has been disabled
+	/// </summary>
+	public bool IsDisabled { get; init; }
 }

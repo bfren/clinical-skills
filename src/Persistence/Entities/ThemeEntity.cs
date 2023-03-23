@@ -31,4 +31,9 @@ public sealed record class ThemeEntity : IWithVersion<ThemeId>
 	/// Theme name
 	/// </summary>
 	public string Name { get; init; } = string.Empty;
+
+	/// <summary>
+	/// Whether or not this theme has been disabled
+	/// </summary>
+	public bool IsDisabled { get; init; }
 }

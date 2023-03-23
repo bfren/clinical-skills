@@ -33,4 +33,8 @@ public sealed record class TrainingGradeTable() : Table(Constants.Schema, TableN
 	/// <inheritdoc cref="Entities.TrainingGradeEntity.Name"/>
 	public string Name =>
 		$"{TableName}_name";
+
+	/// <inheritdoc cref="Entities.TrainingGradeEntity.IsDisabled"/>
+	public string IsDisabled =>
+		$"{TableName}_is_disabled";
 }
