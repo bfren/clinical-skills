@@ -19,11 +19,11 @@ public sealed class AddTrainingGradeTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{TrainingGradeTable.TableName}
 		(
-			{Col(e => e.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-			{Col(e => e.Version)} integer NOT NULL DEFAULT 0,
-			{Col(e => e.UserId)} integer NOT NULL,
-			{Col(e => e.Name)} text COLLATE pg_catalog."en-GB-x-icu" NOT NULL,
-			CONSTRAINT {Col(c => c.Id)}_key PRIMARY KEY({Col(c => c.Id)})
+			{Col(x => x.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+			{Col(x => x.Version)} integer NOT NULL DEFAULT 0,
+			{Col(x => x.UserId)} integer NOT NULL,
+			{Col(x => x.Name)} text COLLATE pg_catalog."en-GB-x-icu" NOT NULL,
+			CONSTRAINT {Col(x => x.Id)}_key PRIMARY KEY({Col(x => x.Id)})
 		)
 		TABLESPACE pg_default
 		;

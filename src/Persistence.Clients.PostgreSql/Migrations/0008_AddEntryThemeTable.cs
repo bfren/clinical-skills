@@ -19,9 +19,9 @@ public sealed class AddEntryThemeTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{EntryThemeTable.TableName}
 		(
-			{Col(e => e.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-			{Col(e => e.EntryId)} integer NOT NULL,
-			{Col(e => e.ThemeId)} integer NOT NULL,
+			{Col(x => x.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+			{Col(x => x.EntryId)} integer NOT NULL,
+			{Col(x => x.ThemeId)} integer NOT NULL,
 			CONSTRAINT {Col(c => c.Id)}_key PRIMARY KEY({Col(c => c.Id)})
 		)
 		TABLESPACE pg_default

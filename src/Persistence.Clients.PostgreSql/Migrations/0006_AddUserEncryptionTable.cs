@@ -19,12 +19,12 @@ public sealed class AddUserEncryptionTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{UserEncryptionTable.TableName}
 		(
-			{Col(e => e.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-			{Col(e => e.Version)} integer NOT NULL DEFAULT 0,
-			{Col(e => e.UserId)} integer NOT NULL,
-			{Col(e => e.Key)} jsonb NOT NULL,
-			CONSTRAINT {Col(e => e.Id)}_key PRIMARY KEY({Col(e => e.Id)}),
-			CONSTRAINT {Col(e => e.UserId)}_unique UNIQUE({Col(e => e.UserId)})
+			{Col(x => x.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+			{Col(x => x.Version)} integer NOT NULL DEFAULT 0,
+			{Col(x => x.UserId)} integer NOT NULL,
+			{Col(x => x.Key)} jsonb NOT NULL,
+			CONSTRAINT {Col(x => x.Id)}_key PRIMARY KEY({Col(x => x.Id)}),
+			CONSTRAINT {Col(x => x.UserId)}_unique UNIQUE({Col(x => x.UserId)})
 		)
 		TABLESPACE pg_default
 		;

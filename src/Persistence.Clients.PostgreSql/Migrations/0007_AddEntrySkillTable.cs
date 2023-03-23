@@ -19,10 +19,10 @@ public sealed class AddEntrySkillTable : Migration
 	protected override void Up() => Execute($"""
 		CREATE TABLE IF NOT EXISTS {Constants.Schema}.{EntrySkillTable.TableName}
 		(
-			{Col(e => e.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
-			{Col(e => e.EntryId)} integer NOT NULL,
-			{Col(e => e.SkillId)} integer NOT NULL,
-			CONSTRAINT {Col(c => c.Id)}_key PRIMARY KEY({Col(c => c.Id)})
+			{Col(x => x.Id)} integer NOT NULL GENERATED ALWAYS AS IDENTITY,
+			{Col(x => x.EntryId)} integer NOT NULL,
+			{Col(x => x.SkillId)} integer NOT NULL,
+			CONSTRAINT {Col(x => x.Id)}_key PRIMARY KEY({Col(x => x.Id)})
 		)
 		TABLESPACE pg_default
 		;
