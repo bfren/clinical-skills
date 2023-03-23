@@ -1,0 +1,60 @@
+@page
+@model WebApp.Pages.Settings.IndexModel
+
+<div class="container">
+
+	<h2>Settings</h2>
+
+	<ul class="nav nav-tabs nav-justified" id="settingsButtons" role="tablist">
+		@{
+			TabButton("General");
+			TabButton("Clinical Settings");
+			TabButton("Training Grades");
+			TabButton("Skills");
+			TabButton("Themes");
+		}
+	</ul>
+
+	<div class="tab-content p-3 border-start border-end border-bottom rounded-bottom" id="settingsPanes">
+		@{
+			TabPane("General");
+			TabPane("Clinical Settings");
+			TabPane("Training Grades");
+			TabPane("Skills");
+			TabPane("Themes");
+		}
+	</div>
+
+</div>
+
+@functions {
+	void TabButton(string text)
+	{
+		var active = text == "General";
+		var name = text.ToLowerInvariant();
+		var css = "nav-link" + (active ? " active" : "");
+
+		<li class="nav-item" role="presentation">
+			<button id="@name-tab"
+					class="@css"
+					type="button"
+					role="tab"
+					data-bs-toggle="tab"
+					data-bs-target="#@name"
+					aria-controls="@name"
+					aria-selected="@active">
+				@text
+			</button>
+		</li>
+	}
+
+	void TabPane(string page)
+	{
+		var name = page.ToLowerInvariant();
+		var src = Url.Page($"{page}/Index");
+		var css = "tab-pane face" + (page == "General" ? " show active" : "");
+
+		<div id="@name" class="@css" role="tabpanel" aria-labelledby="@name-tab" data-src="@src"></div>
+		<script type="text/javascript">loadSettingsTab("#@name");</script>
+	}
+}

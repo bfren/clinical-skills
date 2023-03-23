@@ -30,7 +30,8 @@ public sealed partial class IndexModel
 				Title: "Menu",
 				Items: new MenuItem[]
 				{
-					new("Entries", "/Entries/Index")
+					new("Entries", "/Entries/Index"),
+					new("Settings", "/Settings/Index")
 				}
 			);
 
