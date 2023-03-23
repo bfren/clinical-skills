@@ -39,7 +39,7 @@ internal sealed class CreateUserHandler : QueryHandler<CreateUserQuery, AuthUser
 	{
 		Log.Vrb("Create User: {Query}", query with { Password = "** REDACTED **" });
 
-		var key = new Lockable<string>(Rnd.StringF.Get(64)).Lock(query.Password);
+		var key = Rnd.StringF.Get(64).Lock(query.Password);
 		return from u in User.CreateAsync(query.EmailAddress, query.Password, query.Name)
 			   from e in UserEncryption.CreateAsync(new() { UserId = u, Key = key })
 			   select u;
