@@ -4,7 +4,6 @@
 using Jeebs;
 using Jeebs.Cqrs;
 using WebApp;
-using D = Domain;
 
 // ==========================================
 //  CONFIGURE
@@ -19,12 +18,8 @@ var dispatcher = app.Services.GetRequiredService<IDispatcher>();
 
 log.Inf("Migrate database to latest version.");
 _ = await dispatcher
-	.DispatchAsync(
-		new D.MigrateToLatestCommand()
-	)
-	.LogBoolAsync(
-		log
-	);
+	.SendAsync<C.MigrateToLatestCommand>()
+	.LogBoolAsync(log);
 
 // ==========================================
 //  INSERT TEST DATA
@@ -38,30 +33,20 @@ if (Env("TRUNCATE") == "true")
 {
 	log.Wrn("Truncating database tables.");
 	_ = await dispatcher
-		.DispatchAsync(
-			new D.TruncateEverythingCommand()
-		)
-		.LogBoolAsync(
-			log
-		);
+		.SendAsync<C.TruncateEverythingCommand>()
+		.LogBoolAsync(log);
 
 	log.Inf("Inserting test data.");
 	_ = await dispatcher
-		.DispatchAsync(
-			new D.InsertTestDataCommand()
-		)
-		.LogBoolAsync(
-			log
-		);
+		.SendAsync<C.InsertTestDataCommand>()
+		.LogBoolAsync(log);
 }
 else if (Env("CLINICALSKILLS_USER_EMAIL") is string email && Env("CLINICALSKILLS_USER_PASS") is string pass)
 {
 	var name = Env("CLINICALSKILLS_USER_NAME") ?? "Default";
 	log.Inf("Attempting to create user {Name} with {Email}.", name, email);
 	_ = await dispatcher
-		.DispatchAsync(
-			new D.CreateUserQuery(name, email, pass)
-		)
+		.SendAsync(new Q.CreateUserQuery(name, email, pass))
 		.AuditAsync(
 			some: x => log.Inf("Created user {Id}.", x.Value),
 			none: log.Msg

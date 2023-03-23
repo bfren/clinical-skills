@@ -7,7 +7,7 @@ using Jeebs.Cqrs;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 using Persistence.Clients.PostgreSql;
-using D = Domain;
+using C = Domain.Commands;
 
 // ==========================================
 //  CONFIGURE
@@ -55,8 +55,8 @@ static void Pause(string text = "PAUSE")
 
 Write("Migrations");
 log.Inf("Migrate to latest database version.");
-await dispatcher.DispatchAsync(
-	new D.MigrateToLatestCommand()
+await dispatcher.SendAsync(
+	new C.MigrateToLatestCommand()
 );
 
 // ==========================================
