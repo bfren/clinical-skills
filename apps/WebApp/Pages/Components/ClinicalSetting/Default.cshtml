@@ -1,0 +1,25 @@
+@model WebApp.Pages.Components.ClinicalSetting.ClinicalSettingModel
+
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+
+	var data = new
+	{
+		id = Model.Id.Value,
+		target = Model.EntryId is null ? "settings" : Model.EntryId.Value.ToString()
+	};
+
+	var text = string.IsNullOrEmpty(Model.Name) ? "not set" : Model.Name;
+
+	var tokenId = Rnd.Str;
+}
+
+<span id="@tokenId" class="clinical-setting token">
+	@Model.Label
+	<a href="javascript:void(0)"
+		class="link-primary"
+		data-update="@Model.UpdateUrl"
+		data-replace="@tokenId"
+		data-id="@data.id"
+		data-target="@data.target">@text</a>
+</span>

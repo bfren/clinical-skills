@@ -18,9 +18,12 @@ ready(setupSettingsTabs);
 function loadSettingsTab(tabId) {
 	// get tab target
 	var tab = $(tabId);
+	log("Load settings tab:", tabId);
 
 	// load source
 	var src = tab.data("src");
+	log("Load tab source", src);
+
 	setupAjaxAuth();
 	tab.load(src, () => closeAlert());
 }

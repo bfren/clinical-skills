@@ -1,5 +1,48 @@
 /// <reference path="clinical-skills" />
 
+main {
+  padding: 10px 0 0;
+}
+
+.list-group-item {
+
+  &:hover {
+    background-color: $gray-100;
+  }
+
+  &.item-disabled {
+    background-color: $gray-200;
+    color: $gray-600;
+
+    &:hover {
+      background-color: $gray-300;
+      color: $gray-700;
+    }
+  }
+}
+
+.list-group-item:hover {
+}
+
+.token {
+  a {
+    background-color: $gray-200;
+    font-weight: $font-weight-bold;
+    margin-right: 0.5rem;
+    padding: 0.1rem 0.2rem;
+    text-decoration: none;
+  }
+}
+
+input[type=number] {
+  width: 250px;
+}
+
+#settingsPanes {
+  background-color: #fff;
+  height: calc(100% - 5rem);
+}
+
 .sign-in-form {
   form > div:nth-child(3) {
     display: none;

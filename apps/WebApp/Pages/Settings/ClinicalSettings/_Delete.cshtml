@@ -1,0 +1,18 @@
+@model WebApp.Pages.Settings.ClinicalSettings.DeleteModel
+@{
+	Layout = "Modals/DeleteModal";
+}
+
+<form action="@Url.Page("Index", "Delete")" method="post">
+	
+	@if (Model?.Operation != Persistence.DeleteOperation.None)
+	{
+		<div>
+			@Model?.ClinicalSetting.Name
+		</div>
+	}
+
+	@Html.AntiForgeryToken()
+	@Html.HiddenForId(m => m.ClinicalSetting.Id)
+
+</form>

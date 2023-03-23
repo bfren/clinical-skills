@@ -29,6 +29,7 @@ function loadHash() {
 	if (!url || url.length == 2) {
 		url = home;
 	}
+	log("Url:", url);
 
 	// setup authentication
 	setupAjaxAuth();

@@ -1,0 +1,50 @@
+@using Jeebs.Extensions
+@model WebApp.Pages.Settings.ClinicalSettings.EditModel
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+
+	Model.Title += " " + Model.ClinicalSetting.Id.Value;
+	Layout = "Modals/UpdateModal";
+}
+
+<form class="needs-validation"
+	  action="@Url.Page("Index")"
+	  method="post"
+	  data-replace="clinical-settings"
+	  data-replace-contents="true"
+	  novalidate>
+
+	<!-- ClinicalSetting Details -->
+	<div class="mb-3">
+		@Html.LabelFor(m => m.ClinicalSetting.Name, new { @class = "visually-hidden" })
+		<input type="text"
+			   class="form-control modal-focus"
+			   name="@Html.NameFor(m => m.ClinicalSetting.Name)"
+			   id="@Html.NameFor(m => m.ClinicalSetting.Name)"
+			   placeholder="@nameof(Model.ClinicalSetting.Name)"
+			   value="@Model.ClinicalSetting.Name"
+			   required />
+		<div class="invalid-tooltip">Please enter a name.</div>
+	</div>
+
+	@if (Model.ClinicalSetting.IsDisabled)
+	{
+		<div class="form-check form-switch mb3">
+			<input type="checkbox"
+				class="form-check-input"
+				name="@Html.NameFor(m => m.ClinicalSetting.IsDisabled)"
+				id="@Html.NameFor(m => m.ClinicalSetting.IsDisabled)"
+				checked="checked"
+				/>
+			<label class="form-check-label" for="@Html.NameFor(m => m.ClinicalSetting.IsDisabled)">
+				Disabled (can't be selected for new entries)
+			</label>
+		</div>
+	}
+
+	<!-- Hidden Values -->
+	@Html.AntiForgeryToken()
+	@Html.HiddenForId(m => m.ClinicalSetting.Id)
+	@Html.HiddenFor(m => m.ClinicalSetting.Version)
+
+</form>

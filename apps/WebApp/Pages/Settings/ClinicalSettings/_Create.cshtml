@@ -1,0 +1,41 @@
+@using Jeebs.Extensions
+@model Domain.Queries.GetClinicalSetting.ClinicalSettingModel?
+@{
+	var formId = Rnd.Str;
+}
+
+<form id="@formId"
+	  class="row row-cols-md-auto g-3 align-items-center needs-validation"
+	  action="@Url.Page("Index")"
+	  method="post"
+	  data-replace="clinical-settings"
+	  data-replace-contents="true"
+	  novalidate>
+
+	<!-- ClinicalSetting Details -->
+	<div class="col-12 position-relative">
+		@Html.LabelFor(m => m!.Name, new { @class = "visually-hidden" })
+		<input type="text"
+			   class="form-control select-on-load"
+			   name="@Html.NameFor(m => m!.Name)"
+			   id="@Html.NameFor(m => m!.Name)"
+			   placeholder="@nameof(Model.Name)"
+			   required />
+		<div class="invalid-tooltip">Please enter a name.</div>
+	</div>
+
+	<!-- Hidden Values -->
+	@Html.AntiForgeryToken()
+
+	<!-- Buttons -->
+	<div class="col-12">
+		<button type="reset" class="btn btn-secondary btn-cancel">Cancel</button>
+		<button type="submit" class="btn btn-primary btn-save">Create</button>
+	</div>
+
+</form>
+
+<script type="text/javascript">
+	selectInputOnLoad();
+	setupSaveFormOnEnter("#@formId");
+</script>

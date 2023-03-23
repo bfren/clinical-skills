@@ -1,0 +1,44 @@
+@using Jeebs.Extensions
+@model WebApp.Pages.Components.List.ListMultipleModel
+@{
+	ArgumentNullException.ThrowIfNull(Model);
+
+	if (Model.Items.Any())
+	{
+		var itemsId = Rnd.Str;
+		<div class="mb-2">
+			<input type="text" class="form-control modal-select list-filter" placeholder="Search @Model.Singular.Pluralise(2)..." autocomplete="off" data-filter-for="@itemsId" formnovalidate />
+		</div>
+
+		<div class="list-items mb-3" id="@itemsId">
+			@foreach (var item in Model.Items)
+			{
+				Check(Model.ListName, item.Id, item.Value, item.Text, item.Selected);
+			}
+		</div>
+	}
+	else
+	{
+		<p>Please add some @Model.Singular.Pluralise(2).</p>
+	}
+}
+
+@functions {
+	/// <summary>
+	/// Output a checkbox input item
+	/// </summary>
+	/// <param name="name">The List name</param>
+	/// <param name="id">Item ID</param>
+	/// <param name="value">Item text value</param>
+	/// <param name="text">Item display text</param>
+	/// <param name="selected">True if the item should be marked as selected</param>
+	void Check(string name, object id, string value, string text, bool selected)
+	{
+		string idText = Rnd.Str;
+		var check = selected ? "checked" : string.Empty;
+		<div class="form-check-inline p-2 mb-1 with-data border border-primary text-primary rounded-2" data-text="@value">
+			<input type="checkbox" class="form-check-input" id="@idText" name="@name" value="@id" autocomplete="off" @check />
+			<label class="form-check-label" for="@idText">@text</label>
+		</div>
+	}
+}

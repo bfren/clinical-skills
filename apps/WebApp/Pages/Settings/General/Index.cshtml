@@ -1,0 +1,26 @@
+@page
+@model WebApp.Pages.Settings.General.IndexModel
+
+<div>
+
+	<h4>Defaults</h4>
+
+	<div class="mt-3">
+		<vc:clinical-setting
+			label="Default Clinical Setting"
+			update-url="@Url.Page("Index", "EditClinicalSetting")"
+			value="@Model.Settings.DefaultClinicalSettingId"
+			entry-id="null"
+		/>
+	</div>
+
+	<div class="mt-3">
+		<vc:training-grade
+			label="Default Training Grade"
+			update-url="@Url.Page("Index", "EditTrainingGrade")"
+			value="@Model.Settings.DefaultTrainingGradeId"
+			entry-id="null"
+		/>
+	</div>
+
+</div>

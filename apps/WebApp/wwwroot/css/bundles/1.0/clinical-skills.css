@@ -10879,6 +10879,39 @@ footer div {
   text-align: center;
 }
 
+main {
+  padding: 10px 0 0;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+}
+.list-group-item.item-disabled {
+  background-color: #e9ecef;
+  color: #6c757d;
+}
+.list-group-item.item-disabled:hover {
+  background-color: #dee2e6;
+  color: #495057;
+}
+
+.token a {
+  background-color: #e9ecef;
+  font-weight: 700;
+  margin-right: 0.5rem;
+  padding: 0.1rem 0.2rem;
+  text-decoration: none;
+}
+
+input[type=number] {
+  width: 250px;
+}
+
+#settingsPanes {
+  background-color: #fff;
+  height: calc(100% - 5rem);
+}
+
 .sign-in-form form > div:nth-child(3) {
   display: none;
 }

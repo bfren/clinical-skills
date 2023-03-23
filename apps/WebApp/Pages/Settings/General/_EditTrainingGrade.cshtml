@@ -1,0 +1,20 @@
+@model WebApp.Pages.Settings.General.EditTrainingGradeModel
+@{
+	Layout = "Modals/UpdateModal";
+}
+
+<form method="post" action="@Url.Page("Index", "EditTrainingGrade")">
+
+	<p>Please select a default training grade:</p>
+	<vc:training-grade-list
+		list-name="Settings.DefaultTrainingGradeId"
+		allow-null="true"
+		items="@Model?.TrainingGrades"
+		selected="@Model?.Settings.DefaultTrainingGradeId"
+	/>
+
+	@Html.HiddenForId(x => x.Settings.Id)
+	@Html.HiddenFor(x => x.Settings.Version)
+	@Html.AntiForgeryToken()
+
+</form>
