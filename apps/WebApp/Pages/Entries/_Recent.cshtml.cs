@@ -1,8 +1,7 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using Domain;
-using Domain.GetRecentEntries;
+using Domain.Queries.GetRecentEntries;
 using Jeebs.Mvc.Auth;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +17,7 @@ public sealed partial class IndexModel
 	public Task<PartialViewResult> OnGetRecentAsync()
 	{
 		var query = from u in User.GetUserId()
-					from j in Dispatcher.DispatchAsync(new GetRecentEntriesQuery(u))
+					from j in Dispatcher.SendAsync(new Q.GetRecentEntriesQuery(u))
 					select j;
 
 		return query

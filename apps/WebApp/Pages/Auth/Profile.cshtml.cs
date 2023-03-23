@@ -1,7 +1,7 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using Domain.GetUserProfile;
+using Domain.Queries.GetUserProfile;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
 using Jeebs.Mvc;
@@ -28,7 +28,7 @@ public sealed partial class ProfileModel : PageModel
 	public async Task<IActionResult> OnGetAsync()
 	{
 		var query = from u in User.GetUserId()
-					from p in Dispatcher.DispatchAsync(new Domain.GetUserProfileQuery(u))
+					from p in Dispatcher.SendAsync(new Q.GetUserProfileQuery(u))
 					select p;
 
 		await foreach (var profile in query)
@@ -42,7 +42,7 @@ public sealed partial class ProfileModel : PageModel
 
 	public async Task<IActionResult> OnGetInsertTestDataAsync()
 	{
-		var query = from r in Dispatcher.DispatchAsync(new Domain.InsertTestDataCommand())
+		var query = from r in Dispatcher.SendAsync(new C.InsertTestDataCommand())
 					select r;
 
 		return await query

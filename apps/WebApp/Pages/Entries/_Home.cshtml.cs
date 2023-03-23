@@ -1,7 +1,6 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using Domain;
 using Jeebs.Auth.Data;
 using Jeebs.Cqrs;
 using Jeebs.Logging;
@@ -29,7 +28,7 @@ public sealed partial class IndexModel
 	internal static Task<Maybe<HomeModel>> CreateHomeModel(Maybe<AuthUserId> user, IDispatcher dispatcher, ILog log)
 	{
 		var query = from u in user
-					from recent in dispatcher.DispatchAsync(new GetRecentEntriesQuery(u))
+					from recent in dispatcher.SendAsync(new Q.GetRecentEntriesQuery(u))
 					select new { recent };
 
 		return query

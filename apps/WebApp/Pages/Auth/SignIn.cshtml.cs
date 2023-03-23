@@ -31,8 +31,8 @@ public sealed class SignInModel : Jeebs.Mvc.Razor.Pages.Auth.SignInModel
 
 	private Task<List<Claim>> GetEncryptionKeyAsync(AuthUserModel user, string password) =>
 		dispatcher
-			.DispatchAsync(
-				new Domain.GetUserEncryptionKeyQuery(user.Id, password)
+			.SendAsync(
+				new Q.GetUserEncryptionKeyQuery(user.Id, password)
 			)
 			.SwitchAsync(
 				some: k => new List<Claim> { new(Domain.ClaimTypes.EncryptionKey, k) },

@@ -1,7 +1,7 @@
 // Clinical Skills Apps
 // Copyright (c) bfren - licensed under https://mit.bfren.dev/2023
 
-using Domain.GetEntries;
+using Domain.Queries.GetEntries;
 
 namespace WebApp.Pages.Entries;
 
