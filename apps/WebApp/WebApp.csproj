@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Using Include="Domain.Commands" Alias="C" />
+    <Using Include="Domain.Queries" Alias="Q" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Update="jeebsconfig-secrets.Docker.json">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
