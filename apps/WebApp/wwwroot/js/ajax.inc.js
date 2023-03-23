@@ -1,4 +1,4 @@
-const auth = "jwt";
+const jwt_auth_token = "jwt";
 
 /**
  * Set authorization token using local storage for persistence.
@@ -7,7 +7,7 @@ const auth = "jwt";
  */
 function setAuth(token) {
 	if (token) {
-		localStorage.setItem(auth, "Bearer " + token);
+		localStorage.setItem(jwt_auth_token, "Bearer " + token);
 		setupAjaxAuth();
 	} else {
 		localStorage.clear();
@@ -21,7 +21,7 @@ function setAuth(token) {
 function setupAjaxAuth() {
 	$.ajaxSetup({
 		beforeSend: (xhr) => {
-			xhr.setRequestHeader("Authorization", localStorage.getItem(auth))
+			xhr.setRequestHeader("Authorization", localStorage.getItem(jwt_auth_token))
 		}
 	});
 }
