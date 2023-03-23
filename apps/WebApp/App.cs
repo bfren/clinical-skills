@@ -34,6 +34,8 @@ public sealed class App : RazorApp
 			.AddMemoryCache()
 			.AddMaybeCache<ClinicalSettingId>()
 			.AddMaybeCache<EntryId>()
+			.AddMaybeCache<SkillId>()
+			.AddMaybeCache<ThemeId>()
 			.AddMaybeCache<TrainingGradeId>();
 	}
 
