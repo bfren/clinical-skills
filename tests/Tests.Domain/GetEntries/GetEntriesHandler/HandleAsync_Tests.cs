@@ -31,15 +31,13 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var start = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
-		var end = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
-		var query = new GetEntriesQuery(userId, start, end);
+		var query = new GetEntriesQuery(userId);
 
 		// Act
 		await handler.HandleAsync(query);
 
 		// Assert
-		v.Log.Received().Vrb("Getting Entries for {User} between {Start} and {End}.", userId.Value, start, end);
+		v.Log.Received().Vrb("Getting Entries for {User} matching {Query}.", userId.Value, query);
 	}
 
 	[Fact]
@@ -48,9 +46,17 @@ public sealed class HandleAsync_Tests
 		// Arrange
 		var (handler, v) = GetVars();
 		var userId = LongId<AuthUserId>();
-		var start = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
-		var end = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
-		var query = new GetEntriesQuery(userId, start, end);
+		var occurredFrom = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
+		var occurredTo = DateTime.SpecifyKind(Rnd.DateTime, DateTimeKind.Unspecified);
+		var ageFrom = Rnd.Int;
+		var ageTo = Rnd.Int;
+		var query = new GetEntriesQuery(userId)
+		{
+			DateOccurredFrom = occurredFrom,
+			DateOccurredTo = occurredTo,
+			PatientAgeFrom = ageFrom,
+			PatientAgeTo = ageTo
+		};
 
 		// Act
 		await handler.HandleAsync(query);
@@ -58,8 +64,10 @@ public sealed class HandleAsync_Tests
 		// Assert
 		v.Fluent.AssertCalls(
 			c => FluentQueryHelper.AssertWhere<EntryEntity, AuthUserId>(c, x => x.UserId, Compare.Equal, userId),
-			c => FluentQueryHelper.AssertWhere<EntryEntity, DateTime>(c, x => x.DateOccurred, Compare.MoreThanOrEqual, start),
-			c => FluentQueryHelper.AssertWhere<EntryEntity, DateTime>(c, x => x.DateOccurred, Compare.LessThanOrEqual, end),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, DateTime>(c, x => x.DateOccurred, Compare.MoreThanOrEqual, occurredFrom),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, DateTime>(c, x => x.DateOccurred, Compare.LessThanOrEqual, occurredTo),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, int>(c, x => x.PatientAge, Compare.MoreThanOrEqual, ageFrom),
+			c => FluentQueryHelper.AssertWhere<EntryEntity, int>(c, x => x.PatientAge, Compare.LessThanOrEqual, ageTo),
 			_ => { },
 			_ => { }
 		);
@@ -70,7 +78,7 @@ public sealed class HandleAsync_Tests
 	{
 		// Arrange
 		var (handler, v) = GetVars();
-		var query = new GetEntriesQuery(LongId<AuthUserId>(), Rnd.DateTime, Rnd.DateTime);
+		var query = new GetEntriesQuery(LongId<AuthUserId>());
 
 		v.Dispatcher.DispatchAsync<bool>(default!)
 			.ReturnsForAnyArgs(true);
@@ -82,8 +90,6 @@ public sealed class HandleAsync_Tests
 
 		// Assert
 		v.Fluent.AssertCalls(
-			_ => { },
-			_ => { },
 			_ => { },
 			c => FluentQueryHelper.AssertSort<EntryEntity, DateTime>(c, x => x.DateOccurred, SortOrder.Descending),
 			_ => { }
