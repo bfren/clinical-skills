@@ -27,9 +27,11 @@
 	<script type="text/javascript" csp-add-nonce="true">
 		var readyF = [];
 		var ready = (f) => readyF.push(f);
-		var home = "@Url.Page("/Entries/Index", "Home")";
-		var sidebar = "@Url.Page("/Entries/Index", "Sidebar")";
-		var signIn = "@Url.Page("/Auth/SignIn")";
+		const home = "@Url.Page("/Entries/Index", "Home")";
+		const sidebar = "@Url.Page("/Entries/Index", "Sidebar")";
+		const signIn = "@Url.Page("/Auth/SignIn")";
+		const auth = "jwt";
+		const debug = true;
 	</script>
 
 </head>
